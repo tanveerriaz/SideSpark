@@ -15,6 +15,8 @@ describe("SideSpark opening screen", () => {
     expect(screen.getByRole("button", { name: /skill swap/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /social connect/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /find my sidekick/i })).toBeDisabled();
+    const pitchLink = screen.getByRole("link", { name: /watch 60-sec pitch/i });
+    expect(pitchLink).toHaveAttribute("href", "/presentation.html");
   });
 
   it("lets a person select why they want to connect", async () => {
