@@ -4,6 +4,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   build: {
     outDir: "dist/client",
+    rollupOptions: {
+      input: {
+        main: "index.html",
+        presentation: "presentation.html",
+      },
+    },
   },
   optimizeDeps: {
     include: ["react", "react-dom/client"],
@@ -12,11 +18,12 @@ export default defineConfig({
     host: "0.0.0.0",
     allowedHosts: ["terminal.local"],
     warmup: {
-      clientFiles: ["./src/main.jsx"],
+      clientFiles: ["./src/main.jsx", "./src/presentation/main.jsx"],
     },
   },
   test: {
     environment: "jsdom",
+    include: ["tests/**/*.test.{js,jsx}"],
     setupFiles: ["./src/test/setup.js"],
   },
   plugins: [react()],
