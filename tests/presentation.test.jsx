@@ -47,4 +47,33 @@ describe("SideSpark presentation controls", () => {
     fireEvent.click(screen.getByRole("button", { name: /replay presentation/i }));
     expect(screen.getByRole("status")).toHaveTextContent("Story 1 of 6");
   });
+
+  it("shows the complete honest SideSpark journey", async () => {
+    render(<Presentation autoStart={false} />);
+    const next = screen.getByRole("button", { name: /next story/i });
+
+    expect(screen.getByText("Fictional demo characters")).toBeInTheDocument();
+
+    fireEvent.click(next);
+    expect(await screen.findByRole("heading", { name: /busy days/i })).toBeInTheDocument();
+    expect(screen.getByText("Fictional demo characters")).toBeInTheDocument();
+
+    fireEvent.click(next);
+    expect(await screen.findByText("Skill Swap")).toBeInTheDocument();
+    expect(screen.getByText("Social Connect")).toBeInTheDocument();
+
+    fireEvent.click(next);
+    expect(await screen.findByText("Coffee")).toBeInTheDocument();
+    for (const format of ["Coffee", "Walk", "Lunch", "15-minute Desk Break"]) {
+      expect(screen.getByText(format)).toBeInTheDocument();
+    }
+
+    fireEvent.click(next);
+    expect(await screen.findByText(/deterministic matching/i)).toBeInTheDocument();
+    expect(screen.getByText(/consented synthetic demo profile/i)).toBeInTheDocument();
+
+    fireEvent.click(next);
+    expect(await screen.findByText(/spark cards stay on this device/i)).toBeInTheDocument();
+    expect(screen.getByText(/no private directory/i)).toBeInTheDocument();
+  });
 });

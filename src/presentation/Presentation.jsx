@@ -1,12 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  BadgeCheck,
   ChevronLeft,
   ChevronRight,
+  Coffee,
+  Footprints,
+  Lightbulb,
+  Map,
+  MessagesSquare,
   Pause,
   Play,
   RotateCcw,
+  ShieldCheck,
   Sparkles,
+  Timer,
+  UsersRound,
+  Utensils,
 } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import intentReference from "../../docs/references/sidespark-option-1.png";
 import journeyReference from "../../docs/references/sidespark-option-2-journey.png";
@@ -30,11 +41,108 @@ function isEditableTarget(target) {
     && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
 }
 
+function PhotoScene({ beat }) {
+  return (
+    <figure className={`presentation__media presentation__media--photo presentation__media--${beat.media}`}>
+      <img src={MEDIA[beat.media]} alt={beat.alt} />
+      <figcaption><BadgeCheck aria-hidden="true" /> {beat.disclosure}</figcaption>
+    </figure>
+  );
+}
+
+function IntentScene({ beat }) {
+  return (
+    <div className="intent-scene">
+      <div className="intent-scene__choices" aria-label="SideSpark intentions">
+        <article className="intent-scene__choice intent-scene__choice--skill">
+          <MessagesSquare aria-hidden="true" />
+          <div><strong>Skill Swap</strong><span>Share what you know.</span></div>
+        </article>
+        <article className="intent-scene__choice intent-scene__choice--social">
+          <UsersRound aria-hidden="true" />
+          <div><strong>Social Connect</strong><span>Grow your circle.</span></div>
+        </article>
+      </div>
+      <figure className="reference-crop reference-crop--intent">
+        <img src={MEDIA[beat.media]} alt={beat.alt} />
+      </figure>
+    </div>
+  );
+}
+
+const FORMATS = [
+  { label: "Coffee", detail: "15 min", Icon: Coffee },
+  { label: "Walk", detail: "15 min", Icon: Footprints },
+  { label: "Lunch", detail: "30 min", Icon: Utensils },
+  { label: "15-minute Desk Break", detail: "Right where you are", Icon: Timer },
+];
+
+function FormatScene({ beat }) {
+  return (
+    <div className="format-scene">
+      <ol className="format-scene__list">
+        {FORMATS.map(({ label, detail, Icon }, index) => (
+          <li key={label} data-active={index === 1 ? "true" : undefined}>
+            <span><Icon aria-hidden="true" /></span>
+            <div><strong>{label}</strong><small>{detail}</small></div>
+          </li>
+        ))}
+      </ol>
+      <figure className="reference-crop reference-crop--journey">
+        <img src={MEDIA[beat.media]} alt={beat.alt} />
+      </figure>
+    </div>
+  );
+}
+
+function MatchScene({ beat }) {
+  return (
+    <div className="match-scene">
+      <PhotoScene beat={beat} />
+      <article className="match-card">
+        <p><BadgeCheck aria-hidden="true" /> Demo sidekick</p>
+        <div className="match-card__person">
+          <span><UsersRound aria-hidden="true" /></span>
+          <div><strong>Meet Alex</strong><small>Finance</small></div>
+        </div>
+        <dl>
+          <div><dt><Sparkles aria-hidden="true" /> In common</dt><dd>Street photography</dd></div>
+          <div><dt><Lightbulb aria-hidden="true" /> Discover</dt><dd>A new view of the business</dd></div>
+        </dl>
+        <small className="match-card__truth">Deterministic matching · consented synthetic demo profile</small>
+      </article>
+    </div>
+  );
+}
+
+function PayoffScene({ beat }) {
+  return (
+    <div className="payoff-scene">
+      <figure className="payoff-scene__screen">
+        <img src={MEDIA[beat.media]} alt={beat.alt} />
+      </figure>
+      <div className="payoff-scene__proof">
+        <p><ShieldCheck aria-hidden="true" /><span><strong>No private directory</strong><small>Consented demo profiles only</small></span></p>
+        <p><Map aria-hidden="true" /><span><strong>Spark Cards stay on this device</strong><small>Progress is device-local</small></span></p>
+      </div>
+    </div>
+  );
+}
+
+function BeatVisual({ beat }) {
+  if (beat.id === "intent") return <IntentScene beat={beat} />;
+  if (beat.id === "format") return <FormatScene beat={beat} />;
+  if (beat.id === "match") return <MatchScene beat={beat} />;
+  if (beat.id === "payoff") return <PayoffScene beat={beat} />;
+  return <PhotoScene beat={beat} />;
+}
+
 export function Presentation({ autoStart = true }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
   const [isComplete, setIsComplete] = useState(false);
   const wasPlayingBeforeHide = useRef(false);
+  const reduceMotion = useReducedMotion();
   const beat = STORY_BEATS[currentIndex];
 
   const goPrevious = useCallback(() => {
@@ -133,18 +241,25 @@ export function Presentation({ autoStart = true }) {
         ))}
       </div>
 
-      <section className="presentation__beat" aria-labelledby={`beat-${beat.id}`}>
-        <div className="presentation__copy">
-          <p className="presentation__kicker">{beat.kicker}</p>
-          <h1 id={`beat-${beat.id}`}>{beat.title}</h1>
-          <p className="presentation__body">{beat.body}</p>
-        </div>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.section
+          key={beat.id}
+          className={`presentation__beat presentation__beat--${beat.id}`}
+          aria-labelledby={`beat-${beat.id}`}
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -18 }}
+          transition={{ duration: reduceMotion ? 0.1 : 0.42, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="presentation__copy">
+            <p className="presentation__kicker">{beat.kicker}</p>
+            <h1 id={`beat-${beat.id}`}>{beat.title}</h1>
+            <p className="presentation__body">{beat.body}</p>
+          </div>
 
-        <figure className={`presentation__media presentation__media--${beat.mediaType}`}>
-          <img src={MEDIA[beat.media]} alt={beat.alt} />
-          {beat.disclosure ? <figcaption>{beat.disclosure}</figcaption> : null}
-        </figure>
-      </section>
+          <BeatVisual beat={beat} />
+        </motion.section>
+      </AnimatePresence>
 
       <footer className="presentation__footer">
         <p className="sr-only" role="status" aria-live="polite">
