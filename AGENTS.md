@@ -17,6 +17,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - After either intention is selected, reveal the vertical journey behavior shown in `docs/references/sidespark-option-2-journey.png`.
 - This is a responsive public website, not a simulated phone app. The selected mobile visual governs the mobile state; layouts must also adapt cleanly through tablet and desktop widths.
 - The MVP uses deterministic matching against explicitly consented synthetic demo profiles. Label demo data honestly and never imply live employees, private directory access, or an AI call that did not happen.
+- Fictional demo profiles are acceptable, but both Skill Swap and Social Connect must provide a complete end-to-end journey rather than stopping at the intention-selection screen.
 - Store only device-local progress. Do not collect email addresses, employee IDs, photos, sensitive HR data, or transmit profile data.
 - Preserve keyboard access, 48px touch targets, visible focus, reduced-motion behavior, honest no-match handling, and a complete 320px-wide experience.
 - The canonical implementation plan is `docs/plans/2026-09-02-sidespark-implementation.md`.

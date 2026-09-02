@@ -191,7 +191,7 @@ ANY_STATE -> CHOOSE_INTENT via Start over
 
 1. Select Social Connect.
 2. Pick Coffee.
-3. Enter first name, team, and up to three interests.
+3. Enter first name, team, and up to three interests; these answers are entered during the journey and are not pre-submitted employee data.
 4. Matching prioritises another team, one shared interest, and one useful difference.
 5. Reveal: **Meet Alex from Finance.**
 6. Explain: both enjoy street photography; Alex knows a part of the business the user rarely sees.
@@ -209,6 +209,8 @@ ANY_STATE -> CHOOSE_INTENT via Start over
 5. Reveal the match and a clear reason.
 6. Quest: each person demonstrates one useful technique, then the learner repeats it in their own words.
 7. Save the technique title and one takeaway in the Spark Card.
+
+Both positive paths must be fully interactive in the public prototype and label every fictional match as a **Demo sidekick**.
 
 ### Honest negative path
 
