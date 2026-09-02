@@ -2,37 +2,38 @@
 
 - Source visual truth: `docs/references/sidespark-option-1.png`
 - Interaction reference: `docs/references/sidespark-option-2-journey.png`
-- Implementation evidence: `qa/implementation-mobile-v1.png`
-- Viewport: 390 by 844 CSS pixels
-- Source pixels: 853 by 1844
-- Implementation screenshot pixels: 375 by 974
-- Device pixel ratio reported by the browser: 2
-- State: opening choice screen, plus Social Connect selected interaction check
-- Normalization: source and implementation were compared at equal rendered width. The source scales to approximately 375 by 811; the implementation is taller because it includes the explicit privacy boundary below the primary action.
+- Landing evidence: `artifacts/design-qa/landing-592x1280.png`
+- Journey evidence: `artifacts/design-qa/journey-592x1280.png`
+- Combined comparisons: `artifacts/design-qa/landing-comparison.png` and `artifacts/design-qa/journey-comparison.png`
+- Browser viewport override: 592 by 1280 CSS pixels
+- Implementation capture pixels: 577 by 1170 after the in-app browser chrome and vertical scrollbar are excluded
+- Exact comparison normalization: each source image was scaled and cropped to the same 577 by 1170 visible area before being placed beside the implementation capture
+- States: unselected landing; Social Connect with Coffee selected; complete Skill Swap and Social Connect journeys
 
-## Findings
+## Final Findings
 
-No actionable P0, P1, or P2 difference blocks this first public preview.
+No actionable P0, P1, or P2 differences remain.
 
-- Fonts and typography: Fredoka 700 reproduces the rounded display voice; Inter 400–700 preserves the source's clean interface hierarchy. Heading wrapping matches the two-line source composition.
-- Spacing and layout rhythm: the header, hero, paired cards, activity strip, and primary action retain the source order and mobile proportions. Cards measure approximately 162.5 by 312 CSS pixels at the tested viewport.
-- Colors and visual tokens: deep indigo, coral, mint, yellow, cream, and white follow the approved palette with accessible focus treatment.
-- Image and icon fidelity: the implementation follows the approved plan's explicit Lucide icon treatment rather than reproducing the mock's illustrative figures. No photographic or required raster asset is missing from this bounded preview.
-- Copy and content: the approved name, headline, two intentions, action, and connection-first promise are present. The demo-data and device-local privacy boundary are explicit.
-- Interaction: Social Connect changes to `aria-pressed="true"`, enables the primary action, and produces no browser console errors.
+- Brand and illustration fidelity: the production UI now uses purpose-sized transparent artwork for the multicolour spark mark, Skill Swap speech bubbles, Social Connect pair, and community chain. Live text remains HTML and functional controls continue to use the icon library.
+- Type, colour, and hierarchy: the deep indigo shell, coral and mint choice cards, yellow action, Fredoka display type, and compact community strip preserve the approved landing composition.
+- Journey fidelity: selecting either intention reveals a cream step panel with tactile white break cards, coloured badges, a dotted route, durations, and a visible selected state. The responsive site retains its dark shell instead of imitating a phone frame.
+- Honest states: the opening action is intentionally dimmed until an intention and break format are chosen. The activity count is labelled as demo data, and the privacy note states that profile data remains on-device.
+- Responsive behavior: 320px and 1280px browser checks showed no horizontal overflow. Every measured button and link met the 48px minimum target size.
+- Interaction and accessibility: both journeys were completed through profile entry, deterministic matching, quest, reflection, Spark Card, and community map. The no-match recovery and buddy route are covered by tests. Intentions and formats expose pressed states; focus and reduced-motion handling remain present.
+- Runtime: the in-app browser console showed no application errors. The landing video autoplays muted when permitted, remains still for reduced-motion preference, includes a play/pause control, and labels its fictional people.
 
 ## Comparison History
 
-- Pass 1: confirmed normalized mobile proportions and the approved visual hierarchy. No P0/P1/P2 fix was required before the first public preview.
+1. P1: generic outline artwork did not carry the bespoke character of the approved references. Replaced it with dedicated transparent brand and intention artwork, then re-compared the landing state.
+2. P1: advancing from the lower landing page could leave the next step partially off-screen. Added top-of-step scrolling to every stage transition and covered the behavior with a regression test.
+3. P1: starting over during the matching delay could reveal a stale match. The pending transition is now cancelled on restart and unmount, with a regression test.
+4. P2: the header clipped at 320px and the opening action fell below the intended mobile rhythm. Tightened the narrow header and mobile spacing; the post-fix checks show full-width fit and compliant controls.
+5. P2: the optional takeaway allowed more text than the agreed local Spark Card contract. Reduced it to 120 characters and added a test.
+6. Final pass: reviewed the landing and selected journey in combined source-versus-implementation inputs and found no remaining P0-P2 issue.
 
-## Follow-up Polish
+## Focused Evidence
 
-- P3: add the selected journey reveal and richer spark accents as the complete flow is implemented.
-- P3: complete tablet and desktop visual comparison after the working journey exists.
-
-## Focused Region Evidence
-
-The intent-card region was checked separately through browser measurements and interaction state because it carries the primary decision. No additional crop was required for the initial brand and headline because both remain legible in the full-view comparison.
+The primary intention cards and the break-selection panel were checked as the two decision-heavy regions. Separate 320px and desktop captures verified that their responsive changes did not introduce clipping, undersized controls, or horizontal scrolling.
 
 final result: passed
 
@@ -45,7 +46,7 @@ final result: passed
 - Mobile implementation evidence: `qa/sidespark-home-presentation-link-mobile.png`
 - Tested CSS viewports: 1440 by 900 and 320 by 720
 - Source pixels: 853 by 1844
-- Implementation screenshot pixels: 1440 by 170 desktop header crop and 320 by 180 mobile header crop
+- Implementation screenshot pixels: 1440 by 210 desktop header crop and 320 by 220 mobile header crop
 - Density normalization: browser captures use one screenshot pixel per CSS pixel. Focused header crops were compared against the source's header and opening hero at their rendered widths.
 - State: homepage at rest, presentation link visible, plus complete homepage-to-presentation-to-home navigation
 
@@ -63,7 +64,7 @@ No actionable P0, P1, or P2 difference remains.
 ## Comparison History
 
 - Pass 1, P2 fixed: at 320 pixels, the combined Community and pitch links measured about 301 pixels inside a 284-pixel row, clipping 16 pixels from the Community link. The narrow breakpoint now visually shortens the pitch copy to `60-sec pitch` while preserving the full accessible name.
-- Pass 2: remeasurement placed Community at x 46.5 and the pitch link at x 163.1 to 302 inside the 320-pixel viewport. Both links are fully visible, retain 48-pixel targets, and produce no horizontal overflow.
+- Pass 2: after integrating the latest production homepage, remeasurement placed Community at x 48.3 and the pitch link at x 148.1 to 287 inside the 320-pixel viewport. Both links are fully visible, retain 48-pixel targets, and produce no horizontal overflow.
 
 ## Full-View And Focused Evidence
 

@@ -11,6 +11,7 @@
   "notes": [
     "Fal pricing was checked immediately before generation.",
     "Bria returned square images despite the requested 16:9 aspect ratio, so each accepted image was cropped locally to 1024x576 without a billable retry.",
+    "All three Hailuo results were valid 910x512 H.264 MP4 files, but independently decoded frames at 0.2, 2.8, and 5.5 seconds were byte-identical. No billable retries were made; deterministic camera movement is added during local post-production.",
     "The people shown are fictional characters created for this demo."
   ],
   "scenes": [
@@ -21,7 +22,12 @@
       "imageRequestId": "01a061f7-e81f-7df3-9a3e-a80c90d39874",
       "imageSeed": 1148655046,
       "imageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce3b/LtV-abVIRBzxVf1tpabzK_ac11b3e14ce14c20b4e3fd0e9be79147.png",
-      "imageFile": "source/coffee-keyframe.jpg"
+      "imageFile": "source/coffee-keyframe.jpg",
+      "croppedImageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce49/aXJQbtOUQKrnZkorZK7yi_coffee-keyframe.jpg",
+      "motionPrompt": "Subtle handheld commercial camera push-in. The two coworkers smile, make natural eye contact, and lift their coffee cups slightly as their conversation begins. Realistic restrained gestures, stable faces and hands, believable office background, no scene change, no text appearing.",
+      "videoRequestId": "01a061fa-6405-7cb1-8c64-a446bd31c27c",
+      "videoRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce51/bVuU_SFCfd0CCaQ_67ohI_krCtcJHQ.mp4",
+      "videoFile": "source/coffee.mp4"
     },
     {
       "id": "walk",
@@ -30,7 +36,12 @@
       "imageRequestId": "01a061f8-b159-71d0-a98d-37837afa6bf5",
       "imageSeed": 204111127,
       "imageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce41/aaNL3FwPmxD8MBPmi0pXr_d0e3a4fae2af4c909e0b026a65a4c32f.png",
-      "imageFile": "source/walk-keyframe.jpg"
+      "imageFile": "source/walk-keyframe.jpg",
+      "croppedImageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce4a/W-rNkpLtYWpf72ADB0uU8_walk-keyframe.jpg",
+      "motionPrompt": "Smooth lateral tracking shot as the two coworkers walk at a relaxed pace and talk. Natural arm movement, a brief shared smile, gentle tropical greenery motion, stable faces and hands, no scene change, no text appearing.",
+      "videoRequestId": "01a061fa-66f4-79e1-857a-51e1367060db",
+      "videoRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce52/shv6IxoJAjbJcnn4cmP6t_fnCXMvVD.mp4",
+      "videoFile": "source/walk.mp4"
     },
     {
       "id": "skill",
@@ -39,7 +50,12 @@
       "imageRequestId": "01a061f9-1e68-7b40-b95f-9151100835ea",
       "imageSeed": 2035769226,
       "imageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce5a/czq7azBPKwOCwWPelvaXO_b881bd0bf82f40e5b0c6c11517e723a0.png",
-      "imageFile": "source/skill-keyframe.jpg"
+      "imageFile": "source/skill-keyframe.jpg",
+      "croppedImageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce4a/cd_SOheu9tOAOYYZrqnNN_skill-keyframe.jpg",
+      "motionPrompt": "Slow commercial camera slide. The first coworker points to one part of the laptop while the second nods and tries the technique, both visibly engaged. Restrained realistic movement, stable faces and hands, screen remains unreadable, no scene change, no text appearing.",
+      "videoRequestId": "01a061fa-60da-72e1-a43e-acf961d17209",
+      "videoRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce53/5M0rEe5uFLr9sXqQ5GGTc_Mo25zVuq.mp4",
+      "videoFile": "source/skill.mp4"
     }
   ]
 }

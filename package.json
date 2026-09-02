@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build && node scripts/prepare-sites-build.mjs",
     "preview": "vite preview",
+    "render:video": "swift scripts/render-sidespark-ad.swift",
     "test": "vitest run",
+    "test:video": "node --test tests/video-assets.test.mjs",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:sites": "node --test tests/sites-worker.test.mjs"
