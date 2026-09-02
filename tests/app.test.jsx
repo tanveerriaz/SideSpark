@@ -25,6 +25,7 @@ describe("SideSpark opening screen", () => {
     await user.click(socialConnect);
 
     expect(socialConnect).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByRole("button", { name: /find my sidekick/i })).toBeEnabled();
+    expect(screen.getByRole("heading", { name: /pick your break/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /find my sidekick/i })).toBeDisabled();
   });
 });
