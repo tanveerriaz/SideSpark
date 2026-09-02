@@ -35,3 +35,45 @@ No actionable P0, P1, or P2 difference blocks this first public preview.
 The intent-card region was checked separately through browser measurements and interaction state because it carries the primary decision. No additional crop was required for the initial brand and headline because both remain legible in the full-view comparison.
 
 final result: passed
+
+---
+
+# SideSpark 60-Second Presentation Design QA
+
+- Source visual truth: `docs/references/sidespark-option-1.png`
+- Journey reference: `docs/references/sidespark-option-2-journey.png`
+- Desktop implementation evidence: `qa/sidespark-presentation-desktop.png`
+- Mobile implementation evidence: `qa/sidespark-presentation-mobile.png`
+- Tested viewports: 1440 by 900 and 320 by 720 CSS pixels
+- Source pixels: 853 by 1844 for each reference
+- Implementation screenshot pixels: 1440 by 900 desktop and 320 by 720 mobile
+- State: all six story beats inspected; focused comparison states were intention selection, journey reveal, and final proof
+- Normalization: the portrait references were treated as the visual-language and component-anatomy source of truth, then deliberately composed inside a timed landscape presentation. Comparison used matched on-screen width and state rather than forcing a distorted one-to-one crop.
+
+## Findings
+
+No actionable P0, P1, or P2 difference remains.
+
+- Typography: Fredoka preserves the bold rounded product voice while Inter keeps supporting copy compact and readable. Display copy remains legible without clipping at both tested viewports.
+- Layout and spacing: the desktop frame balances copy and visual evidence without dead zones. At 320 pixels, all six beats fit inside the viewport with no horizontal or vertical overflow.
+- Color and component fidelity: electric indigo, coral, mint, yellow, cream, heavy rounded corners, and tactile dark offsets match the approved SideSpark language. The Skill Swap, Social Connect, and break-format cards retain the hierarchy shown in the references.
+- Image quality: the existing coffee, walking, and desk-side skill-swap keyframes are used at suitable crops. Product screenshots remain crisp and are not stretched.
+- Copy and storyline: the six ten-second beats move from hidden opportunity, to workplace friction, to two clear intentions, to break formats, to a deterministic synthetic-demo match, and finally to the privacy and connection payoff. AI prompting is not positioned as the product category.
+- Icons: functional symbols come from Lucide. No emoji, CSS illustration, hand-authored SVG, or placeholder art is used.
+- Interaction: autoplay, pause, replay, previous, next, Arrow Left, Arrow Right, and Space all work. The end state reports `1:00 / 1:00` and replay returns to story one.
+- Accessibility: the progress rail exposes a labelled progressbar, playback controls have accessible names, controls remain at least 48 by 48 CSS pixels, focus remains visible, and reduced-motion mode keeps manual controls available.
+
+## Comparison History
+
+- Pass 1, P2 fixed: mobile navigation controls measured 46 pixels; all controls now enforce a minimum 48-pixel target and remeasured at 48, 52, and 48 pixels.
+- Pass 2, P2 fixed: sequential exit-before-enter animation could make fast manual navigation appear to skip visual beats; synchronized transitions and explicit grid rows now update the visual immediately.
+- Pass 3, P2 fixed: the mobile finale initially hid too much of the product screen; the final layout now keeps the product capture and both privacy proof cards visible without overflow.
+- Pass 4: the two source references and the final desktop and mobile screenshots were reviewed together. No remaining visual mismatch rose above optional polish.
+
+## Focused Region Evidence
+
+- Intention choice: card proportions, brand colors, title hierarchy, tactile shadows, and the reference-screen crop were compared at desktop width.
+- Journey reveal: break tiles, selected-state emphasis, vertical-flow cues, and the portrait reference crop were compared at 320 pixels.
+- Match and payoff: synthetic-demo labelling, deterministic-match language, device-local proof, and the final responsive product capture were checked independently.
+
+final result: passed

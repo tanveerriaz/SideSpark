@@ -76,6 +76,22 @@ a:focus-visible {
   margin-inline: auto;
 }
 
+.presentation__header {
+  grid-row: 1;
+}
+
+.presentation__progress {
+  grid-row: 2;
+}
+
+.presentation__beat {
+  grid-row: 3;
+}
+
+.presentation__footer {
+  grid-row: 4;
+}
+
 .presentation__header,
 .presentation__footer {
   display: flex;
@@ -834,8 +850,41 @@ a:focus-visible {
     gap: 10px;
   }
 
+  .payoff-scene {
+    grid-template-columns: minmax(0, 0.56fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .payoff-scene__screen {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    height: 86%;
+    opacity: 1;
+  }
+
+  .payoff-scene__proof {
+    position: relative;
+    z-index: 1;
+  }
+
   .payoff-scene__proof p {
-    padding: 15px;
+    gap: 9px;
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .payoff-scene__proof > p > svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .payoff-scene__proof strong {
+    font-size: 0.9rem;
+  }
+
+  .payoff-scene__proof small {
+    font-size: 0.68rem;
   }
 
   .presentation__counter,
@@ -893,11 +942,6 @@ a:focus-visible {
 
   .presentation__footer {
     gap: 8px;
-  }
-
-  .presentation__controls button {
-    width: 46px;
-    height: 46px;
   }
 
   .presentation__time {

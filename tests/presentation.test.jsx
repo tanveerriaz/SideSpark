@@ -18,6 +18,9 @@ describe("SideSpark presentation controls", () => {
     ).toBeInTheDocument();
     expect(screen.getByRole("status")).toHaveTextContent("Story 1 of 6");
     expect(screen.getByRole("heading", { name: /one desk away/i })).toBeInTheDocument();
+    for (const control of screen.getAllByRole("button")) {
+      expect(control).toHaveStyle({ minWidth: "48px", minHeight: "48px" });
+    }
 
     await user.click(screen.getByRole("button", { name: /next story/i }));
     expect(screen.getByRole("status")).toHaveTextContent("Story 2 of 6");
@@ -43,6 +46,11 @@ describe("SideSpark presentation controls", () => {
 
     act(() => vi.advanceTimersByTime(10_000));
     expect(screen.getByRole("status")).toHaveTextContent(/presentation complete/i);
+    expect(screen.getByLabelText("Total duration one minute")).toHaveTextContent("1:00 / 1:00");
+    expect(screen.getByRole("progressbar", { name: /presentation progress/i })).toHaveAttribute(
+      "aria-valuenow",
+      "60",
+    );
 
     fireEvent.click(screen.getByRole("button", { name: /replay presentation/i }));
     expect(screen.getByRole("status")).toHaveTextContent("Story 1 of 6");
@@ -56,7 +64,7 @@ describe("SideSpark presentation controls", () => {
 
     fireEvent.click(next);
     expect(await screen.findByRole("heading", { name: /busy days/i })).toBeInTheDocument();
-    expect(screen.getByText("Fictional demo characters")).toBeInTheDocument();
+    expect(screen.getAllByText("Fictional demo characters").length).toBeGreaterThan(0);
 
     fireEvent.click(next);
     expect(await screen.findByText("Skill Swap")).toBeInTheDocument();
@@ -75,5 +83,23 @@ describe("SideSpark presentation controls", () => {
     fireEvent.click(next);
     expect(await screen.findByText(/spark cards stay on this device/i)).toBeInTheDocument();
     expect(screen.getByText(/no private directory/i)).toBeInTheDocument();
+  });
+
+  it("keeps controls available in reduced-motion mode", () => {
+    render(<Presentation autoStart={false} reducedMotionOverride />);
+
+    expect(
+      screen.getByRole("main", { name: /sidespark 60-second presentation/i }),
+    ).toHaveAttribute("data-motion", "reduced");
+    expect(screen.getByRole("button", { name: /^play presentation$/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /next story/i })).toBeInTheDocument();
+  });
+
+  it("shows the next visual immediately when manually advanced", () => {
+    render(<Presentation autoStart={false} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /next story/i }));
+
+    expect(screen.getByRole("heading", { name: /busy days make workplace circles smaller/i })).toBeInTheDocument();
   });
 });

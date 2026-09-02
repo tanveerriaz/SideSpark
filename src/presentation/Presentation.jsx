@@ -36,6 +36,8 @@ const MEDIA = {
   walk: walkPhoto,
 };
 
+const CONTROL_TARGET_SIZE = { minWidth: 48, minHeight: 48 };
+
 function isEditableTarget(target) {
   return target instanceof HTMLElement
     && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
@@ -137,13 +139,17 @@ function BeatVisual({ beat }) {
   return <PhotoScene beat={beat} />;
 }
 
-export function Presentation({ autoStart = true }) {
+export function Presentation({ autoStart = true, reducedMotionOverride }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
   const [isComplete, setIsComplete] = useState(false);
   const wasPlayingBeforeHide = useRef(false);
-  const reduceMotion = useReducedMotion();
+  const systemReduceMotion = useReducedMotion();
+  const reduceMotion = reducedMotionOverride ?? systemReduceMotion;
   const beat = STORY_BEATS[currentIndex];
+  const elapsedSeconds = isComplete
+    ? TOTAL_DURATION_MS / 1_000
+    : currentIndex * (beat.durationMs / 1_000);
 
   const goPrevious = useCallback(() => {
     setIsComplete(false);
@@ -217,6 +223,7 @@ export function Presentation({ autoStart = true }) {
     <main
       className="presentation"
       data-tone={beat.tone}
+      data-motion={reduceMotion ? "reduced" : "full"}
       aria-label="SideSpark 60-second presentation"
     >
       <header className="presentation__header">
@@ -227,9 +234,20 @@ export function Presentation({ autoStart = true }) {
         <p className="presentation__duration">One idea. One minute.</p>
       </header>
 
-      <div className="presentation__progress" aria-hidden="true">
+      <div
+        className="presentation__progress"
+        role="progressbar"
+        aria-label="Presentation progress"
+        aria-valuemin="0"
+        aria-valuemax={TOTAL_DURATION_MS / 1_000}
+        aria-valuenow={elapsedSeconds}
+      >
         {STORY_BEATS.map((storyBeat, index) => (
-          <span key={storyBeat.id} data-state={index < currentIndex ? "past" : index === currentIndex ? "active" : "future"}>
+          <span
+            key={storyBeat.id}
+            aria-hidden="true"
+            data-state={isComplete || index < currentIndex ? "past" : index === currentIndex ? "active" : "future"}
+          >
             <i
               key={`${storyBeat.id}-${currentIndex}-${isPlaying}`}
               style={{
@@ -241,7 +259,7 @@ export function Presentation({ autoStart = true }) {
         ))}
       </div>
 
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence mode="sync" initial={false}>
         <motion.section
           key={beat.id}
           className={`presentation__beat presentation__beat--${beat.id}`}
@@ -272,30 +290,48 @@ export function Presentation({ autoStart = true }) {
         </div>
 
         <div className="presentation__controls">
-          <button type="button" onClick={goPrevious} disabled={currentIndex === 0} aria-label="Previous story">
+          <button
+            type="button"
+            style={CONTROL_TARGET_SIZE}
+            onClick={goPrevious}
+            disabled={currentIndex === 0}
+            aria-label="Previous story"
+          >
             <ChevronLeft aria-hidden="true" />
           </button>
           {isComplete ? (
-            <button type="button" onClick={replay} aria-label="Replay presentation">
+            <button
+              type="button"
+              style={CONTROL_TARGET_SIZE}
+              onClick={replay}
+              aria-label="Replay presentation"
+            >
               <RotateCcw aria-hidden="true" />
             </button>
           ) : (
             <button
               type="button"
               className="presentation__play"
+              style={CONTROL_TARGET_SIZE}
               onClick={togglePlayback}
               aria-label={isPlaying ? "Pause presentation" : "Play presentation"}
             >
               {isPlaying ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
             </button>
           )}
-          <button type="button" onClick={goNext} disabled={isComplete} aria-label="Next story">
+          <button
+            type="button"
+            style={CONTROL_TARGET_SIZE}
+            onClick={goNext}
+            disabled={isComplete}
+            aria-label="Next story"
+          >
             <ChevronRight aria-hidden="true" />
           </button>
         </div>
 
         <p className="presentation__time" aria-label="Total duration one minute">
-          {Math.floor((currentIndex * 10) / 60)}:{String((currentIndex * 10) % 60).padStart(2, "0")}
+          {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
           <span> / {Math.floor(TOTAL_DURATION_MS / 60_000)}:00</span>
         </p>
       </footer>
