@@ -27,3 +27,10 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - The approved screens contain no required photographic or raster illustration assets beyond the two source references retained for comparison.
 - Use the chosen icon library for functional symbols such as people, conversation, coffee, walking, lunch, clocks, checks, arrows, and sparkles.
 - Do not recreate decorative artwork with CSS drawings, hand-authored SVG, emoji, or text glyphs.
+
+## Landing-page video decision
+
+- Use an 18-second, muted, looping SideSpark ad on the landing page.
+- Generate three six-second office-life clips through Fal using the lowest-cost suitable video model; the approved budget workflow is Bria Fast keyframes animated with MiniMax Hailuo-02 Fast.
+- Show coffee connection, a walking sidequest, and a practical desk-side skill swap. Add all brand wording during deterministic local post-production so generated footage never contains garbled product copy.
+- Keep the video honest and accessible: fictional people must not be presented as real employees, autoplay must have a pause control, and reduced-motion users receive a still poster instead of autoplay.
