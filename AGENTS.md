@@ -12,6 +12,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 - The product name is **SideSpark**. It helps non-technical office workers meet coworkers, exchange practical skills, and grow their networks through short shared sidequests.
 - Connection comes first. AI prompting is one optional skill topic, never the product's main category or a load-bearing dependency.
+- When `AI prompting` is offered or requested in Skill Swap, use a hands-on, break-specific AI learning challenge with a clear outcome and safe-data reminder. Keep Social Connect and non-AI Skill Swap quests intact.
 - The two entry intentions are **Skill Swap** and **Social Connect**. Break formats are Coffee, Walk, Lunch, and a 15-minute Desk Break.
 - Use `docs/references/sidespark-option-1.png` as the visual source of truth: deep electric indigo, coral and mint choice cards, yellow primary actions, bold rounded typography, tactile controls, and playful spark accents.
 - After either intention is selected, reveal the vertical journey behavior shown in `docs/references/sidespark-option-2-journey.png`.
@@ -27,6 +28,8 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - The approved screens contain no required photographic or raster illustration assets beyond the two source references retained for comparison.
 - Use the chosen icon library for functional symbols such as people, conversation, coffee, walking, lunch, clocks, checks, arrows, and sparkles.
 - Do not recreate decorative artwork with CSS drawings, hand-authored SVG, emoji, or text glyphs.
+- The logo and primary intention illustrations must carry the polished, bespoke character of the approved references; generic outline icons are not an acceptable substitute for the multicolour spark burst, Skill Swap artwork, or Social Connect artwork.
+- When those brand illustrations need to be implemented as raster assets, use transparent, purpose-sized files with accessible text alternatives and preserve the functional icon library for ordinary controls.
 
 ## Landing-page video decision
 

@@ -9,9 +9,12 @@ describe("SideSpark opening screen", () => {
     render(<App />);
 
     expect(screen.getByText("SideSpark")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /sidespark spark mark/i })).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /take a break\. find your spark\./i }),
     ).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /skill swap illustration/i })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /social connect illustration/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /skill swap/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /social connect/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /find my sidekick/i })).toBeDisabled();

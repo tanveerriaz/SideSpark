@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
   Check,
   Lightbulb,
-  MessagesSquare,
-  Network,
   RotateCcw,
   Sparkles,
   UsersRound,
 } from "lucide-react";
 import { motion } from "motion/react";
 
+import communityChain from "./assets/brand/community-chain.png";
+import sidesparkMark from "./assets/brand/sidespark-mark.png";
+import sparkAccent from "./assets/brand/spark-accent.png";
+import skillSwapIllustration from "./assets/brand/skill-swap.png";
+import socialConnectIllustration from "./assets/brand/social-connect.png";
 import { CommunityMap } from "./components/CommunityMap.jsx";
 import { FormatJourney } from "./components/FormatJourney.jsx";
 import { MatchReveal } from "./components/MatchReveal.jsx";
@@ -30,13 +33,15 @@ const INTENTS = [
     id: "skill",
     label: "Skill Swap",
     description: "Share what you know. Learn something new.",
-    Icon: MessagesSquare,
+    illustration: skillSwapIllustration,
+    illustrationAlt: "Skill Swap illustration",
   },
   {
     id: "social",
     label: "Social Connect",
     description: "Meet great people. Build real connections.",
-    Icon: UsersRound,
+    illustration: socialConnectIllustration,
+    illustrationAlt: "Social Connect illustration",
   },
 ];
 
@@ -70,7 +75,7 @@ function CompletionPanel({ onBack, onSave }) {
           <span>Takeaway <small>optional</small></span>
           <textarea
             rows="4"
-            maxLength="180"
+            maxLength="120"
             placeholder="Something I learned, noticed, or want to try…"
             value={takeaway}
             onChange={(event) => setTakeaway(event.target.value)}
@@ -125,8 +130,18 @@ export function App() {
   const [sparkCard, setSparkCard] = useState(null);
   const [storageNotice, setStorageNotice] = useState("");
   const [progress, setProgress] = useState(() => loadProgress());
+  const matchingTimerRef = useRef(null);
 
   const isChoosing = stage === "choose";
+
+  useEffect(() => () => {
+    if (matchingTimerRef.current) window.clearTimeout(matchingTimerRef.current);
+  }, []);
+
+  function moveToStage(nextStage) {
+    setStage(nextStage);
+    window.setTimeout(() => window.scrollTo?.({ top: 0, behavior: "smooth" }), 0);
+  }
 
   function selectIntent(intent) {
     setSelectedIntent(intent);
@@ -136,7 +151,7 @@ export function App() {
 
   function startProfile() {
     if (!selectedIntent || !selectedFormat) return;
-    setStage("profile");
+    moveToStage("profile");
   }
 
   function submitProfile(nextProfile) {
@@ -151,7 +166,7 @@ export function App() {
     setProfile(nextProfile);
     setMatch(result);
     if (!result) {
-      setStage("no-match");
+      moveToStage("no-match");
       return;
     }
 
@@ -163,13 +178,16 @@ export function App() {
         format: selectedFormat,
       }),
     );
-    setStage("matching");
-    window.setTimeout(() => setStage("match"), 420);
+    moveToStage("matching");
+    matchingTimerRef.current = window.setTimeout(() => {
+      matchingTimerRef.current = null;
+      moveToStage("match");
+    }, 420);
   }
 
   function saveSpark(takeaway) {
     const format = getFormat(selectedFormat);
-    const quest = getQuest(selectedIntent, selectedFormat);
+    const quest = getQuest(selectedIntent, selectedFormat, profile);
     const card = {
       id: `${match.candidate.id}-${Date.now()}`,
       sidekickId: match.candidate.id,
@@ -185,11 +203,15 @@ export function App() {
     setProgress(saved.progress);
     setSparkCard(card);
     setStorageNotice(saved.persisted ? "" : "This spark will last for this visit only.");
-    setStage("complete");
+    moveToStage("complete");
   }
 
   function startOver() {
-    setStage(INITIAL_STAGE);
+    if (matchingTimerRef.current) {
+      window.clearTimeout(matchingTimerRef.current);
+      matchingTimerRef.current = null;
+    }
+    moveToStage(INITIAL_STAGE);
     setSelectedIntent(null);
     setSelectedFormat(null);
     setProfile(null);
@@ -197,7 +219,6 @@ export function App() {
     setIntroduction(null);
     setSparkCard(null);
     setStorageNotice("");
-    window.scrollTo?.({ top: 0, behavior: "smooth" });
   }
 
   return (
@@ -205,7 +226,7 @@ export function App() {
       <div className="page-frame">
         <header className="site-header">
           <button className="brand" type="button" onClick={startOver} aria-label="SideSpark home">
-            <Sparkles aria-hidden="true" />
+            <img src={sidesparkMark} alt="SideSpark spark mark" />
             <span>SideSpark</span>
           </button>
           {stage === "complete" ? (
@@ -227,13 +248,14 @@ export function App() {
           {isChoosing ? (
             <motion.div key="choose" exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.16 }}>
               <section className="hero" id="top" aria-labelledby="hero-title">
+                <img className="hero-spark-accent hero-spark-accent--top" src={sparkAccent} alt="" />
+                <img className="hero-spark-accent hero-spark-accent--side" src={sparkAccent} alt="" />
                 <motion.div
                   className="hero-copy"
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.28 }}
                 >
-                  <p className="hero-kicker">Tiny adventures. Real workplace connections.</p>
                   <h1 id="hero-title">
                     Take a break. <span>Find your spark.</span>
                   </h1>
@@ -241,7 +263,7 @@ export function App() {
                 </motion.div>
 
                 <div className="intent-grid" aria-label="Choose how you want to connect">
-                  {INTENTS.map(({ id, label, description, Icon }, index) => {
+                  {INTENTS.map(({ id, label, description, illustration, illustrationAlt }, index) => {
                     const selected = selectedIntent === id;
                     return (
                       <motion.button
@@ -256,7 +278,9 @@ export function App() {
                         whileTap={{ y: 2 }}
                         transition={{ delay: index * 0.08, duration: 0.22 }}
                       >
-                        <span className="intent-card__icon"><Icon aria-hidden="true" /></span>
+                        <span className="intent-card__illustration">
+                          <img src={illustration} alt={illustrationAlt} />
+                        </span>
                         {selected ? <span className="intent-card__check" aria-hidden="true"><Check /></span> : null}
                         <span className="intent-card__title">{label}</span>
                         <span className="intent-card__description">{description}</span>
@@ -272,9 +296,9 @@ export function App() {
               ) : null}
 
               <section className="community-strip" id="community" aria-label="Demo community activity">
-                <span className="community-strip__icon" aria-hidden="true"><Network /></span>
+                <span className="community-strip__icon" aria-hidden="true"><UsersRound /></span>
                 <p><strong>24 demo sparks</strong><span>this week</span></p>
-                <div className="community-strip__people" aria-hidden="true"><UsersRound /><Sparkles /></div>
+                <img className="community-strip__people" src={communityChain} alt="" />
               </section>
 
               <button
@@ -297,7 +321,7 @@ export function App() {
               <ProfileForm
                 intent={selectedIntent}
                 initialProfile={profile}
-                onBack={() => setStage(INITIAL_STAGE)}
+                onBack={() => moveToStage(INITIAL_STAGE)}
                 onSubmit={submitProfile}
               />
             </motion.div>
@@ -323,10 +347,10 @@ export function App() {
               <NoMatchPanel
                 onTryBreak={() => {
                   setSelectedFormat(null);
-                  setStage(INITIAL_STAGE);
+                  moveToStage(INITIAL_STAGE);
                 }}
-                onChangeProfile={() => setStage("profile")}
-                onBringBuddy={() => setStage("buddy")}
+                onChangeProfile={() => moveToStage("profile")}
+                onBringBuddy={() => moveToStage("buddy")}
               />
             </motion.div>
           ) : null}
@@ -338,7 +362,7 @@ export function App() {
                 <p className="section-kicker">Buddy mode</p>
                 <h2 id="buddy-title">Bring someone you already know</h2>
                 <p className="panel-intro">Use the same activity together. SideSpark will not invent a match or add a demo map connection.</p>
-                <button className="primary-action primary-action--inside" type="button" onClick={() => setStage("buddy-quest")}>
+                <button className="primary-action primary-action--inside" type="button" onClick={() => moveToStage("buddy-quest")}>
                   Open the sidequest <ArrowRight aria-hidden="true" />
                 </button>
               </section>
@@ -348,10 +372,10 @@ export function App() {
           {stage === "buddy-quest" ? (
             <motion.div className="flow-stage" key="buddy-quest" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <QuestCard
-                quest={getQuest(selectedIntent, selectedFormat)}
+                quest={getQuest(selectedIntent, selectedFormat, profile)}
                 format={selectedFormat}
                 sidekick={{ firstName: "your buddy" }}
-                onComplete={() => setStage("buddy-complete")}
+                onComplete={() => moveToStage("buddy-complete")}
               />
             </motion.div>
           ) : null}
@@ -377,8 +401,8 @@ export function App() {
                 introduction={introduction}
                 intent={selectedIntent}
                 format={selectedFormat}
-                onBack={() => setStage("profile")}
-                onStart={() => setStage("quest")}
+                onBack={() => moveToStage("profile")}
+                onStart={() => moveToStage("quest")}
               />
             </motion.div>
           ) : null}
@@ -386,17 +410,17 @@ export function App() {
           {stage === "quest" && match ? (
             <motion.div className="flow-stage" key="quest" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <QuestCard
-                quest={getQuest(selectedIntent, selectedFormat)}
+                quest={getQuest(selectedIntent, selectedFormat, profile)}
                 format={selectedFormat}
                 sidekick={match.candidate}
-                onComplete={() => setStage("reflection")}
+                onComplete={() => moveToStage("reflection")}
               />
             </motion.div>
           ) : null}
 
           {stage === "reflection" ? (
             <motion.div className="flow-stage" key="reflection" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <CompletionPanel onBack={() => setStage("quest")} onSave={saveSpark} />
+              <CompletionPanel onBack={() => moveToStage("quest")} onSave={saveSpark} />
             </motion.div>
           ) : null}
 

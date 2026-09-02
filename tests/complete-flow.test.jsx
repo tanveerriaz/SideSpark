@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 
@@ -29,6 +29,7 @@ describe("complete SideSpark journeys", () => {
 
     await user.click(screen.getByRole("button", { name: /start this sidequest/i }));
     await user.click(screen.getByRole("button", { name: /we did it/i }));
+    expect(screen.getByLabelText(/takeaway/i)).toHaveAttribute("maxlength", "120");
     await user.type(screen.getByLabelText(/takeaway/i), "Finance has a useful view of product trade-offs.");
     await user.click(screen.getByRole("button", { name: /save my spark card/i }));
 
@@ -55,6 +56,25 @@ describe("complete SideSpark journeys", () => {
 
     expect(screen.getByRole("heading", { name: /your spark card/i })).toBeInTheDocument();
     expect(screen.getByText(/skill swap/i)).toBeInTheDocument();
+  });
+
+  it("turns an AI prompting Skill Swap into a structured learning challenge", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await beginJourney(user, /skill swap/i, /coffee/i);
+    await user.type(screen.getByLabelText(/skill you can share/i), "Presentation confidence");
+    await user.type(screen.getByLabelText(/skill you want to learn/i), "AI prompting");
+    expect(screen.getByText(/no email, employee ID, directory, or AI call/i)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: /match me with a demo sidekick/i }));
+
+    expect(await screen.findByRole("heading", { name: /meet priya/i })).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: /start this sidequest/i }));
+
+    const challenge = screen.getByRole("region", { name: /the prompt remix challenge/i });
+    expect(within(challenge).getAllByRole("listitem")).toHaveLength(3);
+    expect(within(challenge).getByText(/specific context and constraints make a prompt more useful/i)).toBeInTheDocument();
+    expect(within(challenge).getByText(/do not enter confidential, personal, or sensitive work information/i)).toBeInTheDocument();
   });
 
   it("offers useful recovery actions when every suitable demo match is complete", async () => {
