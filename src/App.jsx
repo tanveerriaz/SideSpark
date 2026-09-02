@@ -15,6 +15,7 @@ import { motion } from "motion/react";
 import { CommunityMap } from "./components/CommunityMap.jsx";
 import { FormatJourney } from "./components/FormatJourney.jsx";
 import { MatchReveal } from "./components/MatchReveal.jsx";
+import { OfficeAd } from "./components/OfficeAd.jsx";
 import { ProfileForm } from "./components/ProfileForm.jsx";
 import { QuestCard } from "./components/QuestCard.jsx";
 import { SparkCard } from "./components/SparkCard.jsx";
@@ -286,6 +287,8 @@ export function App() {
               </button>
 
               <p className="demo-note">Preview community uses fictional, consented demo profiles. No profile data leaves this device.</p>
+
+              <OfficeAd />
             </motion.div>
           ) : null}
 
