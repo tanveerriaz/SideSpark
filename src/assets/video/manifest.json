@@ -1,0 +1,45 @@
+{
+  "title": "SideSpark office ad",
+  "durationSeconds": 18,
+  "fictionalPeople": true,
+  "imageModel": "fal-ai/bria/text-to-image/fast",
+  "videoModel": "fal-ai/minimax/hailuo-02-fast/image-to-video",
+  "imagePriceAtGenerationUsd": 0.028,
+  "videoPricePerSecondAtGenerationUsd": 0.017,
+  "estimatedFalCostUsd": 0.39,
+  "generationDate": "2026-09-02",
+  "notes": [
+    "Fal pricing was checked immediately before generation.",
+    "Bria returned square images despite the requested 16:9 aspect ratio, so each accepted image was cropped locally to 1024x576 without a billable retry.",
+    "The people shown are fictional characters created for this demo."
+  ],
+  "scenes": [
+    {
+      "id": "coffee",
+      "caption": "Pick a break.",
+      "prompt": "Candid cinematic workplace advertising photograph in a bright contemporary Singapore office pantry. Two friendly adult coworkers from different teams, one South Asian man and one East Asian woman, meet naturally beside a coffee counter, holding simple ceramic cups and beginning an easy conversation. Smart-casual office clothing, warm natural daylight, real skin texture, inclusive modern workplace, energetic but believable, clean 16:9 composition with negative space at upper left for later typography. No readable text, no logos, no branded products, no phones facing camera, no exaggerated poses, no extra fingers, no watermark.",
+      "imageRequestId": "01a061f7-e81f-7df3-9a3e-a80c90d39874",
+      "imageSeed": 1148655046,
+      "imageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce3b/LtV-abVIRBzxVf1tpabzK_ac11b3e14ce14c20b4e3fd0e9be79147.png",
+      "imageFile": "source/coffee-keyframe.jpg"
+    },
+    {
+      "id": "walk",
+      "caption": "Meet someone new.",
+      "prompt": "Candid cinematic workplace advertising photograph of two adult coworkers from different departments taking a short walking break along a sheltered tropical office walkway in Singapore. One Black woman and one East Asian man in smart-casual clothing walk side by side, engaged in a relaxed useful conversation, subtle city greenery and modern office architecture, natural midday light, genuine expressions, believable movement, 16:9 framing with negative space at upper left for later typography. No readable text, no logos, no branded products, no phones facing camera, no exaggerated poses, no extra fingers, no watermark.",
+      "imageRequestId": "01a061f8-b159-71d0-a98d-37837afa6bf5",
+      "imageSeed": 204111127,
+      "imageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce41/aaNL3FwPmxD8MBPmi0pXr_d0e3a4fae2af4c909e0b026a65a4c32f.png",
+      "imageFile": "source/walk-keyframe.jpg"
+    },
+    {
+      "id": "skill",
+      "caption": "Swap a skill. Grow your circle.",
+      "prompt": "Candid cinematic workplace advertising photograph in a modern Singapore office collaboration area. Two adult coworkers from different teams sit together at a desk while one demonstrates a practical spreadsheet or presentation technique on a laptop angled away so no interface text is readable. One Southeast Asian woman and one Middle Eastern man, smart-casual clothing, friendly focused expressions, a third coworker softly out of focus in the background, natural window light, realistic hands, inclusive and useful peer learning, 16:9 composition with negative space at upper left for later typography. No readable text, no logos, no branded products, no legible screen UI, no exaggerated poses, no extra fingers, no watermark.",
+      "imageRequestId": "01a061f9-1e68-7b40-b95f-9151100835ea",
+      "imageSeed": 2035769226,
+      "imageRemoteUrl": "https://v3b.fal.media/files/b/0aa8ce5a/czq7azBPKwOCwWPelvaXO_b881bd0bf82f40e5b0c6c11517e723a0.png",
+      "imageFile": "source/skill-keyframe.jpg"
+    }
+  ]
+}
