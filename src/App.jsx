@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   ArrowRight,
   Check,
+  CirclePlay,
   MessagesSquare,
   Network,
   Sparkles,
@@ -35,10 +36,20 @@ export function App() {
             <Sparkles aria-hidden="true" />
             <span>SideSpark</span>
           </a>
-          <a className="community-link" href="#community">
-            Community
-            <ArrowRight aria-hidden="true" />
-          </a>
+          <nav className="site-header__links" aria-label="Site links">
+            <a className="community-link" href="#community">
+              Community
+              <ArrowRight aria-hidden="true" />
+            </a>
+            <a
+              className="presentation-link"
+              href="/presentation.html"
+              aria-label="Watch 60-sec pitch"
+            >
+              <CirclePlay aria-hidden="true" />
+              <span><span className="presentation-link__watch">Watch </span>60-sec pitch</span>
+            </a>
+          </nav>
         </header>
 
         <section className="hero" id="top" aria-labelledby="hero-title">

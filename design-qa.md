@@ -38,6 +38,41 @@ final result: passed
 
 ---
 
+# Homepage Presentation Link Design QA
+
+- Source visual truth: `docs/references/sidespark-option-1.png`
+- Desktop implementation evidence: `qa/sidespark-home-presentation-link-desktop.png`
+- Mobile implementation evidence: `qa/sidespark-home-presentation-link-mobile.png`
+- Tested CSS viewports: 1440 by 900 and 320 by 720
+- Source pixels: 853 by 1844
+- Implementation screenshot pixels: 1440 by 170 desktop header crop and 320 by 180 mobile header crop
+- Density normalization: browser captures use one screenshot pixel per CSS pixel. Focused header crops were compared against the source's header and opening hero at their rendered widths.
+- State: homepage at rest, presentation link visible, plus complete homepage-to-presentation-to-home navigation
+
+## Findings
+
+No actionable P0, P1, or P2 difference remains.
+
+- Typography: the link uses the established Fredoka display face and remains readable at both tested widths. The original brand and hero hierarchy are unchanged.
+- Spacing and layout: desktop keeps the Community and presentation links on one balanced header row. At 320 pixels the navigation wraps into a deliberate second row, with both links fully inside the 18-pixel page inset.
+- Colors and tokens: the new pill uses the approved yellow and deep-indigo pairing, existing control radius, and tactile press shadow.
+- Image quality: this header addition introduces no raster assets; existing source imagery and icon treatment are unchanged.
+- Copy and content: `Watch 60-sec pitch` is direct and specific for hackathon judges without replacing the connection-first product message.
+- Interaction and accessibility: the native anchor reaches `/presentation.html` in the same tab, the presentation's SideSpark home link returns to `/`, its accessible name remains `Watch 60-sec pitch` at every breakpoint, and the hit target measures 48 pixels high. Browser console warnings and errors: none.
+
+## Comparison History
+
+- Pass 1, P2 fixed: at 320 pixels, the combined Community and pitch links measured about 301 pixels inside a 284-pixel row, clipping 16 pixels from the Community link. The narrow breakpoint now visually shortens the pitch copy to `60-sec pitch` while preserving the full accessible name.
+- Pass 2: remeasurement placed Community at x 46.5 and the pitch link at x 163.1 to 302 inside the 320-pixel viewport. Both links are fully visible, retain 48-pixel targets, and produce no horizontal overflow.
+
+## Full-View And Focused Evidence
+
+The source opening screen and both implementation captures were reviewed together. The header crops were used as the focused region because the change does not alter cards, community activity, or the primary matching action. No additional content-region crop was needed.
+
+final result: passed
+
+---
+
 # SideSpark 60-Second Presentation Design QA
 
 - Source visual truth: `docs/references/sidespark-option-1.png`
