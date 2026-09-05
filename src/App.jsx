@@ -19,10 +19,12 @@ import socialConnectIllustration from "./assets/brand/social-connect.png";
 import { CommunityMap } from "./components/CommunityMap.jsx";
 import { CommunityMarketplace } from "./components/CommunityMarketplace.jsx";
 import { FormatJourney } from "./components/FormatJourney.jsx";
+import { LegalPage } from "./components/LegalPage.jsx";
 import { MatchReveal } from "./components/MatchReveal.jsx";
 import { OfficeAd } from "./components/OfficeAd.jsx";
 import { ProfileForm } from "./components/ProfileForm.jsx";
 import { QuestCard } from "./components/QuestCard.jsx";
+import { SiteFooter } from "./components/SiteFooter.jsx";
 import { SparkCard } from "./components/SparkCard.jsx";
 import { COMMUNITY } from "./data/community.js";
 import { getFormat, getQuest } from "./data/quests.js";
@@ -122,7 +124,7 @@ function NoMatchPanel({ onTryBreak, onChangeProfile, onBringBuddy }) {
   );
 }
 
-export function App() {
+export function App({ initialPath = window.location.pathname }) {
   const [productMode, setProductMode] = useState("community");
   const [stage, setStage] = useState(INITIAL_STAGE);
   const [selectedIntent, setSelectedIntent] = useState(null);
@@ -140,6 +142,12 @@ export function App() {
   useEffect(() => () => {
     if (matchingTimerRef.current) window.clearTimeout(matchingTimerRef.current);
   }, []);
+
+  const routePath = initialPath.replace(/\/+$/, "") || "/";
+
+  if (routePath === "/privacy" || routePath === "/terms") {
+    return <LegalPage type={routePath.slice(1)} />;
+  }
 
   function moveToStage(nextStage) {
     setStage(nextStage);
@@ -456,6 +464,7 @@ export function App() {
           ) : null}
         </>
       </div>
+      <SiteFooter />
     </main>
   );
 }

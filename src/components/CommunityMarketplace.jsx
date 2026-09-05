@@ -25,6 +25,7 @@ import { ExperienceDetail } from "./ExperienceDetail.jsx";
 import { HostExperienceForm } from "./HostExperienceForm.jsx";
 import { LiveCommunity } from "./LiveCommunity.jsx";
 import { ReputationProfile } from "./ReputationProfile.jsx";
+import { SiteFooter } from "./SiteFooter.jsx";
 import { ThemedIcon } from "./ThemedIcon.jsx";
 
 const DEFAULT_FILTERS = { query: "", format: "all", group: "all" };
@@ -293,10 +294,7 @@ export function CommunityMarketplace({ onOpenClassic }) {
       )}
       </>}
 
-      <footer className="marketplace-footer">
-        <p><strong>SideSpark community prototype.</strong> No real accounts, people, bookings, or notifications are connected yet.</p>
-        <a href="/presentation.html">Watch the original 60-sec pitch <ArrowRight aria-hidden="true" /></a>
-      </footer>
+      <SiteFooter />
       </main>
     </MotionConfig>
   );

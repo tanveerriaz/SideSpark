@@ -29,6 +29,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Avoid generic AI-product copy and interchangeable card grids. Use short, concrete language about what a person can share, join or do next.
 - Fictional demo profiles are acceptable, but both Skill Swap and Social Connect must provide a complete end-to-end journey rather than stopping at the intention-selection screen.
 - Store only device-local progress. Do not collect email addresses, employee IDs, photos, sensitive HR data, or transmit profile data.
+- Keep `/privacy` and `/terms` as truthful current-prototype pages. Link them from every primary journey alongside `mailto:tanveer.riaz@hotmail.com` and the verified SideSpark making-of article at `https://tanveerriaz.me/blog/sidespark-started-with-a-conversation`.
 - Preserve keyboard access, 48px touch targets, visible focus, reduced-motion behavior, honest no-match handling, and a complete 320px-wide experience.
 - The canonical implementation plan is `docs/plans/2026-09-02-sidespark-implementation.md`.
 

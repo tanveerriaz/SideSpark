@@ -1205,27 +1205,6 @@ textarea:focus-visible {
   display: flex;
 }
 
-.site-footer {
-  margin-top: 70px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.8rem;
-}
-
-.site-footer p {
-  display: flex;
-  margin: 0;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.site-footer svg {
-  width: 17px;
-}
-
 /* Public experiences marketplace */
 
 .marketplace-shell {
@@ -2279,38 +2258,228 @@ textarea:focus-visible {
   line-height: 1.55;
 }
 
-.marketplace-footer {
-  display: flex;
-  min-height: 92px;
-  padding: 20px max(24px, calc((100vw - 1340px) / 2));
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  color: rgba(255, 255, 255, 0.66);
+.sidespark-footer {
+  color: rgba(255, 255, 255, 0.7);
   background: var(--indigo-950);
   font-size: 0.82rem;
 }
 
-.marketplace-footer p {
-  margin: 0;
+.sidespark-footer__inner {
+  display: grid;
+  width: min(100%, 1440px);
+  min-height: 118px;
+  margin-inline: auto;
+  padding: 24px max(24px, calc((100vw - 1340px) / 2));
+  grid-template-columns: minmax(260px, 0.8fr) minmax(520px, 1.4fr);
+  align-items: center;
+  gap: 24px;
 }
 
-.marketplace-footer strong {
+.sidespark-footer p {
+  display: grid;
+  margin: 0;
+  gap: 5px;
+  line-height: 1.5;
+}
+
+.sidespark-footer strong {
   color: #ffffff;
 }
 
-.marketplace-footer a {
+.sidespark-footer__links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 2px 18px;
+}
+
+.sidespark-footer a {
   display: inline-flex;
   min-height: 48px;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   color: var(--mint);
   font-weight: 800;
   text-decoration: none;
 }
 
-.marketplace-footer svg {
-  width: 18px;
+.sidespark-footer a:hover {
+  color: var(--sun);
+}
+
+.sidespark-footer svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Privacy and terms */
+
+.legal-shell {
+  min-height: 100vh;
+  padding-bottom: 72px;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+.legal-header {
+  display: flex;
+  min-height: 84px;
+  padding: 14px max(24px, calc((100vw - 1180px) / 2));
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #ffffff;
+  background: var(--indigo-950);
+}
+
+.legal-brand,
+.legal-back {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.legal-brand {
+  gap: 2px;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+}
+
+.legal-brand img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.legal-back {
+  gap: 7px;
+}
+
+.legal-back svg {
+  width: 20px;
+}
+
+.legal-article {
+  width: min(calc(100% - 36px), 880px);
+  margin: clamp(38px, 6vw, 78px) auto 0;
+  padding: clamp(28px, 5vw, 58px);
+  border: 2px solid rgba(18, 16, 95, 0.15);
+  border-radius: var(--card-radius);
+  background: #ffffff;
+  box-shadow: 0 10px 0 rgba(18, 16, 95, 0.12);
+}
+
+.legal-eyebrow {
+  margin: 0;
+  color: var(--indigo-800);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.legal-article > h1 {
+  margin: 10px 0 0;
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(3.6rem, 8vw, 6.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+.legal-updated {
+  margin: 14px 0 0;
+  color: rgba(18, 16, 95, 0.58);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.legal-intro {
+  margin: 26px 0 0;
+  color: var(--indigo-950);
+  font-size: clamp(1.1rem, 2.5vw, 1.32rem);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.legal-sections {
+  display: grid;
+  margin-top: 38px;
+  gap: 34px;
+}
+
+.legal-sections section {
+  padding-top: 30px;
+  border-top: 2px solid rgba(18, 16, 95, 0.1);
+}
+
+.legal-sections h2,
+.legal-contact h2 {
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  line-height: 1.05;
+}
+
+.legal-sections p,
+.legal-contact p {
+  margin: 12px 0 0;
+  color: rgba(18, 16, 95, 0.76);
+  line-height: 1.72;
+}
+
+.legal-contact {
+  display: grid;
+  margin-top: 42px;
+  padding: 24px;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  border: 2px solid var(--ink);
+  border-radius: 22px;
+  background: var(--mint);
+  box-shadow: 0 7px 0 rgba(18, 16, 95, 0.24);
+}
+
+.legal-contact .legal-eyebrow {
+  color: var(--ink);
+}
+
+.legal-contact a,
+.legal-page-links a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.legal-contact a {
+  padding: 10px 16px;
+  gap: 7px;
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  color: #ffffff;
+  background: var(--ink);
+}
+
+.legal-contact a svg {
+  width: 20px;
+}
+
+.legal-page-links {
+  display: flex;
+  margin-top: 34px;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.legal-page-links a {
+  color: var(--indigo-800);
 }
 
 .marketplace-back {
@@ -3464,6 +3633,14 @@ textarea:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .sidespark-footer__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .sidespark-footer__links {
+    justify-content: flex-start;
+  }
+
   .live-intention {
     grid-template-columns: 1fr;
   }
@@ -3482,6 +3659,56 @@ textarea:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .legal-shell {
+    padding-bottom: 42px;
+  }
+
+  .legal-header {
+    padding-inline: 18px;
+  }
+
+  .legal-brand {
+    font-size: 1.45rem;
+  }
+
+  .legal-brand img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .legal-back {
+    font-size: 0.84rem;
+  }
+
+  .legal-article {
+    width: calc(100% - 24px);
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .legal-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-contact a {
+    width: 100%;
+  }
+
+  .legal-page-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sidespark-footer__inner {
+    padding: 26px 18px;
+  }
+
+  .sidespark-footer__links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+
   .live-opening {
     padding: 44px 18px 42px;
   }

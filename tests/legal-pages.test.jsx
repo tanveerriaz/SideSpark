@@ -11,7 +11,7 @@ describe("SideSpark policy pages and public footer", () => {
 
     expect(screen.getByRole("heading", { name: "Privacy", level: 1 })).toBeInTheDocument();
     expect(screen.getByText(/sidespark is currently a prototype/i)).toBeInTheDocument();
-    expect(screen.getByText(/stored in your browser/i)).toBeInTheDocument();
+    expect(screen.getByText(/progress, draft experiences, and reservations are stored in your browser/i)).toBeInTheDocument();
     expect(screen.getByText(/does not send those demo records to an application backend/i)).toBeInTheDocument();
     expect(screen.getByText(/hosting service may process standard technical data/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /contact tanveer about privacy/i })).toHaveAttribute(
@@ -19,7 +19,7 @@ describe("SideSpark policy pages and public footer", () => {
       "mailto:tanveer.riaz@hotmail.com",
     );
     expect(screen.getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms");
-    expect(screen.getByRole("link", { name: /back to sidespark/i })).toHaveAttribute("href", "/");
+    expect(screen.getAllByRole("link", { name: /back to sidespark/i })[0]).toHaveAttribute("href", "/");
   });
 
   it("serves prototype terms at a direct route", () => {
