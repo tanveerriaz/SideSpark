@@ -18,7 +18,7 @@ describe("SideSpark policy pages and public footer", () => {
       "href",
       "mailto:tanveer.riaz@hotmail.com",
     );
-    expect(screen.getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms");
+    expect(screen.getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms/");
     expect(screen.getAllByRole("link", { name: /back to sidespark/i })[0]).toHaveAttribute("href", "/");
   });
 
@@ -32,15 +32,15 @@ describe("SideSpark policy pages and public footer", () => {
     expect(screen.getByText(/medical, legal, financial, employment or safety advice/i)).toBeInTheDocument();
     expect(screen.getByText(/governed by the laws of singapore/i)).toBeInTheDocument();
     expect(screen.getByText(/nothing in these terms excludes rights or liability that the law does not allow/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
+    expect(screen.getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy/");
   });
 
   it("links every public trust destination from the live footer", () => {
     render(<App />);
 
     const footer = screen.getByRole("contentinfo");
-    expect(within(footer).getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
-    expect(within(footer).getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms");
+    expect(within(footer).getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy/");
+    expect(within(footer).getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms/");
     expect(within(footer).getByRole("link", { name: /contact us/i })).toHaveAttribute(
       "href",
       "mailto:tanveer.riaz@hotmail.com",

@@ -24,8 +24,8 @@ describe("SideSpark classic guided demo", () => {
     const pitchLink = screen.getByRole("link", { name: /watch 60-sec pitch/i });
     expect(pitchLink).toHaveAttribute("href", "/presentation.html");
     const footer = screen.getByRole("contentinfo");
-    expect(within(footer).getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
-    expect(within(footer).getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms");
+    expect(within(footer).getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy/");
+    expect(within(footer).getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms/");
     expect(within(footer).getByRole("link", { name: /contact us/i })).toHaveAttribute(
       "href",
       "mailto:tanveer.riaz@hotmail.com",

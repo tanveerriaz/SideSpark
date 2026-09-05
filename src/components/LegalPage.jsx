@@ -38,7 +38,7 @@ const POLICIES = {
         ),
       },
     ],
-    crossLink: { href: "/terms", label: "Terms" },
+    crossLink: { href: "/terms/", label: "Terms" },
   },
   terms: {
     eyebrow: "Rules for trying the prototype",
@@ -80,7 +80,7 @@ const POLICIES = {
         ),
       },
     ],
-    crossLink: { href: "/privacy", label: "Privacy" },
+    crossLink: { href: "/privacy/", label: "Privacy" },
   },
 };
 

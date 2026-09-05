@@ -11,8 +11,8 @@ export function SiteFooter() {
           <span>No real accounts, people, bookings, or notifications are connected yet.</span>
         </p>
         <nav className="sidespark-footer__links" aria-label="Footer links">
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
           <a href="mailto:tanveer.riaz@hotmail.com">
             <Mail aria-hidden="true" /> Contact us
           </a>
