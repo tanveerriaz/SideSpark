@@ -34,4 +34,12 @@ npm run build
 npm run test:sites
 ```
 
+## License
+
+SideSpark's source code is available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md).
+
+Commercial use by any person or organization—including using, modifying, deploying, incorporating, or distributing SideSpark for a commercial purpose—requires prior written approval and a separate commercial license from Tanveer Riaz. For permission or commercial licensing, contact [tanveer.riaz@hotmail.com](mailto:tanveer.riaz@hotmail.com).
+
+The SideSpark name, logo, illustrations, screenshots, videos, design references, and other branded media assets are excluded from the software license and are covered by the separate [brand and media asset terms](ASSET-LICENSE.md). Third-party materials remain subject to their respective licenses and terms.
+
 Built with React and Vite for the ChatGPT Sites Hackathon in Singapore.
