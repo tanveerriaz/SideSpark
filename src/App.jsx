@@ -17,6 +17,7 @@ import sparkAccent from "./assets/brand/spark-accent.png";
 import skillSwapIllustration from "./assets/brand/skill-swap.png";
 import socialConnectIllustration from "./assets/brand/social-connect.png";
 import { CommunityMap } from "./components/CommunityMap.jsx";
+import { CommunityMarketplace } from "./components/CommunityMarketplace.jsx";
 import { FormatJourney } from "./components/FormatJourney.jsx";
 import { MatchReveal } from "./components/MatchReveal.jsx";
 import { OfficeAd } from "./components/OfficeAd.jsx";
@@ -122,6 +123,7 @@ function NoMatchPanel({ onTryBreak, onChangeProfile, onBringBuddy }) {
 }
 
 export function App() {
+  const [productMode, setProductMode] = useState("community");
   const [stage, setStage] = useState(INITIAL_STAGE);
   const [selectedIntent, setSelectedIntent] = useState(null);
   const [selectedFormat, setSelectedFormat] = useState(null);
@@ -222,6 +224,10 @@ export function App() {
     setStorageNotice("");
   }
 
+  if (productMode === "community") {
+    return <CommunityMarketplace onOpenClassic={() => setProductMode("classic")} />;
+  }
+
   return (
     <main className="app-shell">
       <div className="page-frame">
@@ -231,6 +237,9 @@ export function App() {
             <span>SideSpark</span>
           </button>
           <nav className="site-header__links" aria-label="Site links">
+            <button className="community-link" type="button" onClick={() => setProductMode("community")}>
+              <ArrowLeft aria-hidden="true" /> Back to marketplace
+            </button>
             {stage === "complete" ? (
               <button className="community-link" type="button" onClick={() => document.querySelector("#community")?.scrollIntoView()}>
                 Community <ArrowRight aria-hidden="true" />

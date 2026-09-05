@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SideSpark desktop visual comparison</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 18px; color: #fff; background: #080842; font-family: system-ui, sans-serif; }
+      header { display: flex; margin-bottom: 10px; align-items: end; justify-content: space-between; }
+      h1 { margin: 0; font-size: 20px; }
+      p { margin: 0; color: #b9b9d8; font-size: 12px; }
+      main { display: grid; grid-template-columns: 250px 1000px; gap: 16px; align-items: start; }
+      figure { margin: 0; }
+      figcaption { margin-bottom: 7px; color: #92ead2; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+      img { display: block; width: 245px; height: 530px; border: 1px solid #34347d; background: #fff; }
+      img { object-fit: contain; }
+      .frame { width: 1000px; height: 530px; overflow: hidden; border: 1px solid #34347d; background: #fff; }
+      iframe { display: block; width: 1470px; height: 779px; border: 0; transform: scale(0.68); transform-origin: top left; }
+    </style>
+  </head>
+  <body>
+    <header><h1>SideSpark — identity and first-viewport comparison</h1><p>Source governs visual language; implementation intentionally uses marketplace IA.</p></header>
+    <main>
+      <figure><figcaption>Approved source · 853 × 1844</figcaption><img src="/docs/references/sidespark-option-1.png" alt="Approved SideSpark source" /></figure>
+      <figure><figcaption>Marketplace implementation · 1470 × 779 iframe scaled to fit</figcaption><div class="frame"><iframe src="/" title="SideSpark marketplace implementation"></iframe></div></figure>
+    </main>
+  </body>
+</html>

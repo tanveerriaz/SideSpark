@@ -24,8 +24,10 @@ describe("SideSpark office ad", () => {
     vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
   });
 
-  it("explains the ad and identifies its fictional people", () => {
+  it("explains the ad and identifies its fictional people", async () => {
+    const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     expect(
       screen.getByRole("region", { name: /see a sidespark sidequest/i }),
@@ -41,6 +43,7 @@ describe("SideSpark office ad", () => {
   it("autoplays muted and lets a person pause the ad", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     await waitFor(() => {
       expect(HTMLMediaElement.prototype.play).toHaveBeenCalledTimes(1);
@@ -55,7 +58,9 @@ describe("SideSpark office ad", () => {
 
   it("keeps the poster still when reduced motion is preferred", async () => {
     installMotionPreference(true);
+    const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     await Promise.resolve();
     expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();

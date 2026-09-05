@@ -4,9 +4,11 @@ import { describe, expect, it } from "vitest";
 
 import { App } from "../src/App.jsx";
 
-describe("SideSpark opening screen", () => {
-  it("shows the approved connection-first choices", () => {
+describe("SideSpark classic guided demo", () => {
+  it("shows the approved connection-first choices", async () => {
+    const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     expect(screen.getByText("SideSpark")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: /sidespark spark mark/i })).toBeInTheDocument();
@@ -25,6 +27,7 @@ describe("SideSpark opening screen", () => {
   it("lets a person select why they want to connect", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     const socialConnect = screen.getByRole("button", { name: /social connect/i });
     await user.click(socialConnect);

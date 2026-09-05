@@ -6,6 +6,7 @@ import { App } from "../src/App.jsx";
 import { COMMUNITY } from "../src/data/community.js";
 
 async function beginJourney(user, intent, format) {
+  await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
   await user.click(screen.getByRole("button", { name: intent }));
   await user.click(screen.getByRole("button", { name: format }));
   await user.click(screen.getByRole("button", { name: /find my sidekick/i }));

@@ -113,3 +113,65 @@ No actionable P0, P1, or P2 difference remains.
 - Match and payoff: synthetic-demo labelling, deterministic-match language, device-local proof, and the final responsive product capture were checked independently.
 
 final result: passed
+
+---
+
+# SideSpark public marketplace design QA
+
+## Comparison target
+
+- Source visual truth: `docs/references/sidespark-option-1.png` and `docs/references/sidespark-option-2-journey.png`
+- Source pixel dimensions: 853 × 1844 px each
+- Implementation: `http://127.0.0.1:4173/`
+- Desktop comparison board: `artifacts/public-marketplace-qa/desktop-comparison.html`
+- Mobile comparison board: `artifacts/public-marketplace-qa/mobile-comparison.html`
+- Browser evidence: inline captures from the user's selected existing Chrome session; the Chrome extension does not expose a safe persistent screenshot file path
+- Tested desktop viewport: 1470 × 779 CSS px at device scale factor 1
+- Tested mobile viewport: 320 × 720 CSS px at device scale factor 1
+- Density normalization: the desktop board renders the 1470 × 779 implementation at 0.68 scale beside the portrait source. The mobile board gives both panes a 320 × 720 frame, using a source crop and the live responsive implementation.
+- States: default Discover marketplace, empty/reset filters, instant reserve, host-approval request, host validation and publish, reputation profile, and classic guided demo
+
+## Findings
+
+No actionable P0, P1, or P2 difference remains.
+
+- Typography: Fredoka retains the rounded, energetic display voice of the approved references while Inter keeps supporting copy and metadata compact. Desktop and 320px headings wrap without clipping.
+- Layout and rhythm: the desktop first view now contains the complete hero, trust strip, discovery controls, and the opening edge of three experience cards. The mobile journey has no horizontal overflow and preserves a clear sequence from promise to discovery.
+- Colors and tokens: deep electric indigo, coral, mint, yellow, and cream match the approved visual language without gradients. Tactile borders, dark offsets, and rounded panels remain consistent across marketplace, detail, host, and profile states.
+- Assets and icons: the approved raster SideSpark mark and spark accent remain crisp at both viewports. Functional symbols use Lucide; there are no emoji, placeholder drawings, handcrafted SVGs, or CSS illustrations.
+- Copy and content: the product leads with specific joinable experiences. Every example person and listing is labelled fictional, the local host draft is labelled device-only, and credits are clearly non-spendable and attendance-confirmed.
+- Interaction: search, location and group filters, empty/reset state, detail navigation, instant reserve, host-approval request, host form validation/publish, profile badges, and return to the classic guided journey all work in Chrome.
+- Accessibility: the 320px discovery and profile states have no interactive target under 48px; the search field and footer link enforce 48px minimum heights. Focus, accessible labels, error descriptions, and reduced-motion behavior are covered by browser and automated checks.
+- Console: there are no warnings or errors from `http://127.0.0.1:4173/`. Three logged errors came from an unrelated Chrome extension URL and are not application-origin failures.
+
+## Full-view comparison evidence
+
+- The desktop board was inspected as a single source-and-implementation input. It confirms the brand identity, two-column promise, trust strip, filters, and marketplace-card entry at the target viewport.
+- The mobile board was inspected at matched 320px pane widths. The source crop and live implementation share the same strong indigo opening, bold rounded hierarchy, coral/mint/yellow accents, and tactile controls.
+- Separate live Chrome captures verified the 320px experience detail and reputation profile states without overflow.
+
+## Focused region comparison evidence
+
+- Header and hero: logo scale, navigation spacing, display wrapping, CTA treatment, and promise-card density were checked at 1470px and 320px.
+- Discovery: filter wrapping, search target size, fictional-data label, and the first three desktop cards were checked together.
+- Booking: the mobile detail page, instant-reserve success, disabled reserved state, request-pending state, and attendance-credit rule were exercised.
+- Hosting: incomplete submission focuses and scrolls the error summary into view; a valid online/in-person draft publishes into discovery with an explicit device-only label.
+- Reputation: 110 non-spendable credits, eight distinct badges, earned/locked states, and progress copy were inspected without leaderboard or streak mechanics.
+
+## Comparison history
+
+- Pass 0, blocked: approved source images opened, but Chrome capture was unavailable while macOS was locked.
+- Pass 1, P2 fixed: at 1470 × 779, the first viewport ended before any experience card entered view. Desktop hero and discovery spacing were tightened; three card tops now enter at y = 744 within the 779px viewport.
+- Pass 2, P1 fixed: submitting the host form from its final control focused the error summary but left it offscreen. The summary now receives focus without implicit scrolling and then scrolls to the center with reduced-motion-safe behavior.
+- Pass 3, P2 fixed: at 320px, the search input and footer link exposed targets below the product's touch-size standard. Both now enforce 48px minimum heights; the live state has no target below 48px and no horizontal overflow.
+- Pass 4: desktop and mobile comparison boards, booking/profile/host states, and application-origin console logs were rechecked. No P0, P1, or P2 issue remains.
+
+## Automated evidence
+
+- 49 Vitest interaction and domain tests pass across 11 files.
+- 3 video integrity checks pass.
+- Production build passes and emits the required GPTSites client, server and hosting files.
+- 4 GPTSites worker/package checks pass.
+- The protected GPTSites hosting, worker, packaging script, and worker test files remain unchanged.
+
+final result: passed

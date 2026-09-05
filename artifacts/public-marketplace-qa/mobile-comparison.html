@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SideSpark mobile visual comparison</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 18px; color: #fff; background: #080842; font-family: system-ui, sans-serif; }
+      header { width: 760px; margin: 0 auto 10px; }
+      h1 { margin: 0; font-size: 20px; }
+      p { margin: 3px 0 0; color: #b9b9d8; font-size: 12px; }
+      main { display: grid; width: 760px; margin: 0 auto; grid-template-columns: 320px 320px; gap: 40px; align-items: start; }
+      figure { margin: 0; }
+      figcaption { margin-bottom: 7px; color: #92ead2; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+      img, iframe { display: block; width: 320px; height: 720px; border: 1px solid #34347d; background: #fff; }
+      img { object-fit: cover; object-position: top; }
+    </style>
+  </head>
+  <body>
+    <header><h1>SideSpark — mobile first-screen comparison</h1><p>Both panes are 320 × 720 CSS px. Source crop and implementation show their opening state.</p></header>
+    <main>
+      <figure><figcaption>Approved source</figcaption><img src="/docs/references/sidespark-option-1.png" alt="Approved SideSpark source" /></figure>
+      <figure><figcaption>Marketplace implementation</figcaption><iframe src="/" title="SideSpark mobile marketplace implementation"></iframe></figure>
+    </main>
+  </body>
+</html>

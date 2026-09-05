@@ -154,4 +154,37 @@ Open demo profile
 
 ## Backend phase after this prototype
 
-The real multi-user release will need an external identity/database service compatible with the GPTSites frontend, server-enforced authorization, experience and availability records, booking transactions, notification delivery, attendance confirmation, moderation/reporting, and an append-only reputation ledger. That phase begins only after the provider and privacy model are selected.
+The real multi-user release will need an external identity/database service compatible with the GPTSites frontend, server-enforced authorization, experience and availability records, booking transactions, notification delivery, attendance confirmation, moderation/reporting, and an append-only reputation ledger. GPTSites remains the public product surface; identity, shared data and asynchronous delivery live behind authenticated APIs. That phase begins only after the provider and privacy model are selected.
+
+### Minimum shared data model
+
+- `accounts`: provider subject, 18+ attestation timestamp, locale, status and last sign-in. Never store a password in SideSpark.
+- `profiles`: public name, short introduction, languages, public neighborhood/online timezone, accessibility preferences, reputation total and moderation state.
+- `experiences`: host, title, outcome, category, online/in-person mode, public neighborhood, language, capacity, join rule and publishing status.
+- `sessions`: experience, start/end time, timezone, private access instructions, capacity and cancellation state. Scheduling belongs here so an experience can repeat.
+- `bookings`: guest, session, reserved/pending/accepted/declined/cancelled/attended state and timestamps. A database transaction must prevent overbooking.
+- `attendance_confirmations`: one independent confirmation per participant, with a dispute path. No credit is issued from a booking alone.
+- `reputation_ledger`: append-only credit events linked to a confirmed session, with an idempotency key so credits cannot be duplicated.
+- `badge_awards`: badge, profile, earned timestamp and source milestone. Badge rules read confirmed ledger/session data, not likes.
+- `reports` and `blocks`: reporter, subject, reason, evidence pointer, status and moderation audit trail.
+
+### Server-owned invariants
+
+- Only authenticated adults with active accounts can publish, request or reserve.
+- Hosts can change only their own experiences and session access details.
+- Exact physical addresses and private online links are never returned by public discovery APIs.
+- Instant reservation and host approval both use atomic capacity checks; clients cannot assign themselves an accepted state.
+- Credits are non-transferable, non-spendable and created only after the required attendance confirmations.
+- Reputation totals and badges are derived from the ledger and confirmed history, never trusted from client-submitted numbers.
+- Report, block, cancellation and account-status rules are enforced by the API even if the frontend is bypassed.
+
+### Delivery sequence
+
+1. Select the Singapore-region identity/database provider, document data residency and retention, and run a privacy/threat review.
+2. Add account creation, 18+ attestation, public profile editing and authenticated session handling.
+3. Replace device-local experience publishing with shared experience/session APIs and timezone-safe scheduling.
+4. Add transactional request, approval, instant reservation, cancellation and capacity handling.
+5. Add email/in-app notifications without exposing guest contact details to other users.
+6. Add bilateral attendance confirmation, the append-only reputation ledger and badge evaluation jobs.
+7. Add block/report/moderation tools, abuse-rate limits, audit logs, backups and recovery exercises.
+8. Run private beta verification before removing the prototype labels from the GPTSites frontend.

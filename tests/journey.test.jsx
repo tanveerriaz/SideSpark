@@ -7,9 +7,14 @@ import { App } from "../src/App.jsx";
 describe("SideSpark journey", () => {
   beforeEach(() => window.localStorage.clear());
 
+  async function openClassic(user) {
+    await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
+  }
+
   it("reveals all four break formats after an intention is selected", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await openClassic(user);
 
     await user.click(screen.getByRole("button", { name: /social connect/i }));
 
@@ -22,6 +27,7 @@ describe("SideSpark journey", () => {
   it("collects a local profile after a break is chosen", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await openClassic(user);
 
     await user.click(screen.getByRole("button", { name: /social connect/i }));
     await user.click(screen.getByRole("button", { name: /coffee/i }));
@@ -37,6 +43,7 @@ describe("SideSpark journey", () => {
     const user = userEvent.setup();
     const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
     render(<App />);
+    await openClassic(user);
 
     await user.click(screen.getByRole("button", { name: /social connect/i }));
     await user.click(screen.getByRole("button", { name: /coffee/i }));
@@ -50,6 +57,7 @@ describe("SideSpark journey", () => {
   it("does not reveal a stale match after starting over during matching", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await openClassic(user);
 
     await user.click(screen.getByRole("button", { name: /social connect/i }));
     await user.click(screen.getByRole("button", { name: /coffee/i }));
