@@ -1778,7 +1778,8 @@ textarea:focus-visible {
   text-transform: uppercase;
 }
 
-.marketplace-promise blockquote {
+.marketplace-promise blockquote,
+.marketplace-promise__title {
   margin: 13px 0;
   font-family: "Fredoka", sans-serif;
   font-size: clamp(1.45rem, 2vw, 1.85rem);

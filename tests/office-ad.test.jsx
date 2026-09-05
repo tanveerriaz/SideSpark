@@ -27,6 +27,7 @@ describe("SideSpark office ad", () => {
   it("explains the ad and identifies its fictional people", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     expect(
@@ -43,6 +44,7 @@ describe("SideSpark office ad", () => {
   it("autoplays muted and lets a person pause the ad", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     await waitFor(() => {
@@ -60,6 +62,7 @@ describe("SideSpark office ad", () => {
     installMotionPreference(true);
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     await Promise.resolve();

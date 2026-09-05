@@ -8,6 +8,7 @@ describe("SideSpark classic guided demo", () => {
   it("shows the approved connection-first choices", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     expect(screen.getByText("SideSpark")).toBeInTheDocument();
@@ -27,6 +28,7 @@ describe("SideSpark classic guided demo", () => {
   it("lets a person select why they want to connect", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     const socialConnect = screen.getByRole("button", { name: /social connect/i });

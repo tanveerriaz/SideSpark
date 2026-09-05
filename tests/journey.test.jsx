@@ -8,6 +8,7 @@ describe("SideSpark journey", () => {
   beforeEach(() => window.localStorage.clear());
 
   async function openClassic(user) {
+    await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
   }
 

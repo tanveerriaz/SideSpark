@@ -68,7 +68,7 @@ export function ExperienceDetail({ experience, booking, onBack, onBook, persiste
             <>
               <p className="experience-booking-card__label">{experience.bookingMode === "instant" ? "Instant reservation" : "Host approval"}</p>
               <h2>{experience.bookingMode === "instant" ? "A place is available" : "Say why this feels useful"}</h2>
-              <p>{experience.bookingMode === "instant" ? "Reserve without waiting for host approval." : "The real platform will let the host review a short request first."}</p>
+              <p>{experience.bookingMode === "instant" ? "Reserve without waiting for host approval." : "Add one sentence for the fictional host. This request stays on your device."}</p>
             </>
           )}
           <button className="marketplace-primary marketplace-primary--full" type="button" disabled={Boolean(booking)} onClick={onBook}>

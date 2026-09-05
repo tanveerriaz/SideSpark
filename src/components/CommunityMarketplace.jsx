@@ -189,20 +189,20 @@ export function CommunityMarketplace({ onOpenClassic }) {
         >
           <p className="marketplace-kicker"><Sparkles aria-hidden="true" /> Free community experiences</p>
           <h1 id="marketplace-title" tabIndex="-1">Share something you know. <span>Join something you’re curious about.</span></h1>
-          <p>Meet around a useful skill, a lived experience, or simple curiosity—across Singapore in person, or anywhere online.</p>
+          <p>Try six fictional sessions to see how finding, booking, hosting, credits, and badges would work. Nothing is sent to a real person.</p>
           <div className="marketplace-hero__actions">
             <button className="marketplace-primary" type="button" onClick={() => document.querySelector("#discover")?.scrollIntoView()}>
-              Find a spark <Compass aria-hidden="true" />
+              See demo experiences <Compass aria-hidden="true" />
             </button>
             <button className="marketplace-secondary" type="button" onClick={openHost}>
-              Host a spark <Plus aria-hidden="true" />
+              Create demo listing <Plus aria-hidden="true" />
             </button>
           </div>
         </motion.div>
 
         <aside className="marketplace-promise" aria-label="How SideSpark works">
-          <p className="marketplace-promise__label">A small thing worth sharing</p>
-          <blockquote>“I can show you how I plan a phone-photo walk. You bring your curiosity.”</blockquote>
+          <p className="marketplace-promise__label">How this demo works</p>
+          <h2 className="marketplace-promise__title">Choose a fictional session and run the full flow.</h2>
           <div className="marketplace-promise__route">
             <span><strong>1</strong> Pick</span>
             <ArrowRight aria-hidden="true" />
@@ -223,10 +223,10 @@ export function CommunityMarketplace({ onOpenClassic }) {
       <section className="discovery-section" id="discover" aria-labelledby="discovery-title">
         <div className="discovery-heading">
           <div>
-            <p className="marketplace-kicker">Discover your next spark</p>
-            <h2 id="discovery-title">Experiences you can actually picture joining</h2>
+            <p className="marketplace-kicker">Demo experiences</p>
+            <h2 id="discovery-title">Six fictional sessions to try</h2>
           </div>
-          <p><strong>{visibleExperiences.length}</strong> fictional community examples for testing this product direction.</p>
+          <p>Showing <strong>{visibleExperiences.length}</strong> of {allExperiences.length} demo experiences.</p>
         </div>
 
         <div className="discovery-controls">

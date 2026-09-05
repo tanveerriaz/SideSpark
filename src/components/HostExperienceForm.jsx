@@ -121,7 +121,7 @@ export function HostExperienceForm({ onBack, onPublish }) {
             {draft.format === "in-person" ? (
               <label className="host-field host-field--wide"><span>Public neighborhood</span><input aria-label="Public neighborhood" value={draft.neighborhood} onChange={(event) => update("neighborhood", event.target.value)} placeholder="For example, Tiong Bahru" aria-invalid={Boolean(errors.neighborhood)} aria-describedby={errors.neighborhood ? "host-neighborhood-error" : "host-neighborhood-hint"} /><small id="host-neighborhood-hint">Do not enter a home address or exact meeting point.</small><FieldError id="host-neighborhood-error" message={errors.neighborhood} /></label>
             ) : (
-              <div className="host-inline-note host-field--wide"><Info aria-hidden="true" /><p><strong>Private online link</strong>The real platform shares it only after acceptance. This demo does not collect one.</p></div>
+              <div className="host-inline-note host-field--wide"><Info aria-hidden="true" /><p><strong>Private online link</strong>A live host would share it only after acceptance. This demo does not collect one.</p></div>
             )}
           </div>
         </section>

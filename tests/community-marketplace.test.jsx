@@ -41,7 +41,7 @@ describe("public experiences marketplace", () => {
       /every name, profile and experience below is fictional/i,
     );
     expect(screen.getAllByRole("article")).toHaveLength(6);
-    expect(screen.getByRole("button", { name: /demo experiences/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^demo experiences$/i })).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /live community/i }));
     expect(screen.getByRole("heading", { name: /no live experiences are listed yet/i })).toBeInTheDocument();
@@ -54,10 +54,10 @@ describe("public experiences marketplace", () => {
     await enterDemoMode(user);
 
     expect(screen.getByRole("heading", { name: /share something you know/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /host a spark/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /create demo listing/i })).toBeInTheDocument();
     expect(screen.getByRole("searchbox", { name: /search experiences/i })).toBeInTheDocument();
     expect(screen.getAllByRole("article")).toHaveLength(6);
-    expect(screen.getByText(/fictional community examples/i)).toBeInTheDocument();
+    expect(screen.getByText((_, element) => element.tagName === "P" && element.textContent === "Showing 6 of 6 demo experiences.")).toBeInTheDocument();
     expect(screen.getByText(/18\+ community/i)).toBeInTheDocument();
     expect(screen.getByText(/attendance-confirmed credits/i)).toBeInTheDocument();
   });
@@ -70,6 +70,18 @@ describe("public experiences marketplace", () => {
     for (const experience of screen.getAllByRole("article")) {
       expect(within(experience).getByRole("img", { name: /illustration$/i })).toBeInTheDocument();
     }
+  });
+
+  it("uses concrete live-community copy", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(screen.getByText("We’re inviting the first Singapore hosts now.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "No live experiences are listed yet." })).toBeInTheDocument();
+    expect(screen.queryByText(/hosted by aisha|24 sparks|members already/i)).not.toBeInTheDocument();
+
+    await enterDemoMode(user);
+    expect(document.body).not.toHaveTextContent(/testing this product direction|actually picture joining|the real platform will/i);
   });
 
   it("filters and resets the discovery list", async () => {
@@ -159,7 +171,7 @@ describe("public experiences marketplace", () => {
     render(<App />);
     await enterDemoMode(user);
 
-    await user.click(screen.getByRole("button", { name: /host a spark/i }));
+    await user.click(screen.getByRole("button", { name: /create demo listing/i }));
     expect(screen.getByRole("heading", { name: /host a free experience/i })).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: /publish local draft/i }));
 
@@ -179,7 +191,7 @@ describe("public experiences marketplace", () => {
     render(<App />);
     await enterDemoMode(user);
 
-    await user.click(screen.getByRole("button", { name: /host a spark/i }));
+    await user.click(screen.getByRole("button", { name: /create demo listing/i }));
     expect(screen.getByLabelText(/public neighborhood/i)).toBeInTheDocument();
     await user.click(screen.getByLabelText(/^online$/i));
     expect(screen.queryByLabelText(/public neighborhood/i)).not.toBeInTheDocument();
@@ -193,7 +205,7 @@ describe("public experiences marketplace", () => {
     render(<App />);
     await enterDemoMode(user);
 
-    await user.click(screen.getByRole("button", { name: /host a spark/i }));
+    await user.click(screen.getByRole("button", { name: /create demo listing/i }));
     await user.type(screen.getByLabelText(/^title$/i), "Sketch the city together");
     await user.selectOptions(screen.getByLabelText(/category/i), "Creative");
     await user.type(screen.getByLabelText(/what will people do/i), "A relaxed hour learning to notice and sketch everyday details.");
@@ -202,7 +214,7 @@ describe("public experiences marketplace", () => {
     await user.type(screen.getByLabelText(/public neighborhood/i), "Tiong Bahru");
     await user.click(screen.getByRole("button", { name: /publish local draft/i }));
 
-    expect(screen.getByRole("heading", { name: /experiences you can actually picture joining/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /six fictional sessions to try/i })).toBeInTheDocument();
     const draft = screen.getByRole("article", { name: /sketch the city together/i });
     expect(within(draft).getByText(/your device-only draft/i)).toBeInTheDocument();
   });

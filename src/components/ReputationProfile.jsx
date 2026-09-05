@@ -49,7 +49,7 @@ export function ReputationProfile({ onBack }) {
         <div>
           <p className="marketplace-kicker">Trust, not currency</p>
           <h2 id="credits-title">Credits show how you participate</h2>
-          <p>Booking a place or publishing an experience earns nothing. Credits unlock only when both people confirm that the session happened, with moderation available for disagreements in the real platform.</p>
+          <p>Booking a place or publishing an experience earns nothing. Credits are added only when both people confirm that the session happened. A disputed confirmation would need a review.</p>
         </div>
         <dl>
           <div><dt>Completed</dt><dd>4 sessions</dd></div>
@@ -60,7 +60,7 @@ export function ReputationProfile({ onBack }) {
 
       <section className="badge-section" aria-labelledby="badges-title">
         <div className="badge-section__heading">
-          <div><p className="marketplace-kicker">Earned through real participation</p><h2 id="badges-title">Your badge path</h2></div>
+          <div><p className="marketplace-kicker">How badges would be earned</p><h2 id="badges-title">Example badge path</h2></div>
           <p><strong>Next:</strong> meet one new peer to earn Connector.</p>
         </div>
         <ul className="badge-grid" aria-label="Badge collection">
