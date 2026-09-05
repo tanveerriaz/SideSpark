@@ -38,6 +38,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - The approved screens contain no required photographic or raster illustration assets beyond the two source references retained for comparison.
 - Use the chosen icon library for functional symbols such as people, conversation, coffee, walking, lunch, clocks, checks, arrows, and sparkles.
 - Use the MIT-licensed Hugeicons free Stroke Rounded set for prominent trust, credit and badge symbols; its softer, more specific silhouettes should carry the SideSpark theme while ordinary controls may stay visually quieter.
+- Keep `public/og.png` and `public/screenshot.jpeg` as matching 1200×630 branded previews built from the approved community-sharing artwork; expose `/og.png` through absolute Open Graph and Twitter metadata so gallery cards do not depend on generated cover URLs.
 - Do not recreate decorative artwork with CSS drawings, hand-authored SVG, emoji, or text glyphs.
 - The logo and primary intention illustrations must carry the polished, bespoke character of the approved references; generic outline icons are not an acceptable substitute for the multicolour spark burst, Skill Swap artwork, or Social Connect artwork.
 - When those brand illustrations need to be implemented as raster assets, use transparent, purpose-sized files with accessible text alternatives and preserve the functional icon library for ordinary controls.
