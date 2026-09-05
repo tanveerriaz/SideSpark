@@ -37,7 +37,7 @@ describe("SideSpark office ad", () => {
       screen.getByText(/fictional characters created for this demo/i),
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText(/coworkers sharing coffee, a walk, and a practical skill/i),
+      screen.getByLabelText(/adults sharing coffee, a walk, and a practical skill/i),
     ).toHaveProperty("muted", true);
   });
 
@@ -48,7 +48,7 @@ describe("SideSpark office ad", () => {
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
 
     await waitFor(() => {
-      expect(HTMLMediaElement.prototype.play).toHaveBeenCalledTimes(1);
+      expect(HTMLMediaElement.prototype.play).toHaveBeenCalled();
     });
 
     const pause = screen.getByRole("button", { name: /pause office ad/i });

@@ -1312,7 +1312,11 @@ textarea:focus-visible {
   letter-spacing: -0.045em;
 }
 
-.live-opening h1 span {
+.live-opening__headline-line {
+  display: block;
+}
+
+.live-opening__headline-line--accent {
   color: var(--coral);
 }
 
@@ -1322,6 +1326,11 @@ textarea:focus-visible {
   color: rgba(255, 255, 255, 0.82);
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   line-height: 1.5;
+}
+
+.live-opening .office-ad {
+  position: relative;
+  z-index: 1;
 }
 
 .live-intentions {
@@ -1435,7 +1444,8 @@ textarea:focus-visible {
 
 .live-trust svg {
   grid-row: span 2;
-  width: 24px;
+  width: 30px;
+  height: 30px;
 }
 
 .live-trust strong {
@@ -1854,9 +1864,16 @@ textarea:focus-visible {
 
 .trust-row svg {
   grid-row: span 2;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   color: var(--sun);
+}
+
+.themed-community-icon {
+  overflow: visible;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(2px 3px 0 rgba(18, 16, 95, 0.24));
 }
 
 .trust-row strong {
@@ -3475,10 +3492,6 @@ textarea:focus-visible {
 
   .live-opening h1 {
     font-size: clamp(3.2rem, 17vw, 4.25rem);
-  }
-
-  .live-opening h1 span {
-    display: block;
   }
 
   .live-opening__eyebrow {

@@ -39,6 +39,37 @@ final result: passed
 
 ---
 
+# SideSpark live-community, film and themed-icon QA
+
+- Source visual truth: `docs/references/sidespark-option-1.png` and `docs/references/sidespark-option-2-journey.png`
+- Implementation: `http://127.0.0.1:4173/`
+- Mobile comparison board: `artifacts/human-visual-marketplace-qa/mobile-comparison.html`
+- Tested viewports: existing Chrome session at desktop width and 320 × 720 CSS px
+- States: truthful live landing, restored SideSpark film, explicit fictional demo, demo discovery, and demo reputation profile
+
+## Findings
+
+No actionable P0, P1, or P2 difference remains.
+
+- Honest public state: Live community is the default and shows no fabricated members or sessions. Fictional names, listings, booking interactions, credits and badges exist only behind an explicit Demo mode disclosure that remains visible throughout the demo.
+- Brand and illustration continuity: the multicolour SideSpark mark, Skill Swap faces, Social Connect faces, community chain and three human experience scenes remain visible. The layout keeps the source's bold indigo, coral, mint, yellow and cream language without replacing its character with generic UI illustration.
+- Film: the existing 18-second muted SideSpark film is restored below the two intentions. It has a visible play/pause control, a fictional-character disclosure and reduced-motion handling, and its copy refers to adults rather than coworkers.
+- Themed icons: prominent trust, credit and badge symbols use the MIT-licensed Hugeicons free Stroke Rounded set. The selected symbols are specific to location, global access, community size, attendance, adult safety, generosity, reputation and each badge's achievement; quieter functional controls remain Lucide.
+- Responsive behavior: the live headline, intention cards, film, trust commitments, empty live state, demo discovery and badge grid were checked at 320px with no horizontal clipping. Desktop headline rhythm was corrected to two deliberate lines.
+- Interaction and accessibility: Live and Demo navigation, intention selection, video pause, experience detail, booking, hosting and profile navigation remain operational. The icon wrapper is decorative where adjacent text carries the accessible meaning.
+- Runtime: the existing Chrome session showed no application-origin errors. One logged script error came from a Chrome extension rather than the SideSpark origin.
+
+## Focused evidence
+
+- Live landing: original face-led intention artwork, two-line hero, film playback and four themed community commitments were reviewed in the running site.
+- Demo discovery: the persistent fictional-data disclosure, three themed trust commitments and human-scene experience cards were reviewed together.
+- Reputation: all eight badge medallions were checked for distinct theme-matched symbols and clear earned, progress and locked states without leaderboard mechanics.
+- 320px pass: header, headline, two intentions, trust strip, honest empty state and demo/profile states fit the viewport without sideways overflow.
+
+final result: passed
+
+---
+
 # Homepage Presentation Link Design QA
 
 - Source visual truth: `docs/references/sidespark-option-1.png`

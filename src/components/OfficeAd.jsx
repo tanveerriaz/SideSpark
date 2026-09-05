@@ -53,13 +53,13 @@ export function OfficeAd() {
           <Sparkles aria-hidden="true" /> 18 seconds of SideSpark
         </p>
         <h2 id="office-ad-title">See a SideSpark sidequest</h2>
-        <p>Coffee, a quick walk, or one useful skill—small breaks can open up a whole new corner of work.</p>
+        <p>Coffee, a quick walk, or one useful skill—small breaks can open up a whole new corner of your world.</p>
       </div>
 
       <div className="office-ad__media">
         <video
           ref={videoRef}
-          aria-label="Coworkers sharing coffee, a walk, and a practical skill"
+          aria-label="Adults sharing coffee, a walk, and a practical skill"
           aria-describedby="office-ad-disclosure"
           loop
           muted

@@ -2,17 +2,21 @@ import { useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
-  CalendarCheck2,
-  Globe2,
-  MapPin,
   Sparkles,
-  UsersRound,
 } from "lucide-react";
+import {
+  CalendarCheckIn01Icon,
+  GlobalIcon,
+  Location01Icon,
+  UserMultiple02Icon,
+} from "@hugeicons/core-free-icons";
 
 import communityChain from "../assets/brand/community-chain.png";
 import skillSwap from "../assets/brand/skill-swap.png";
 import socialConnect from "../assets/brand/social-connect.png";
 import sparkAccent from "../assets/brand/spark-accent.png";
+import { OfficeAd } from "./OfficeAd.jsx";
+import { ThemedIcon } from "./ThemedIcon.jsx";
 
 function scrollToSection(selector) {
   document.querySelector(selector)?.scrollIntoView({ block: "start" });
@@ -33,7 +37,10 @@ export function LiveCommunity({ onExploreDemo }) {
         <img className="live-opening__accent live-opening__accent--side" src={sparkAccent} alt="" />
         <div className="live-opening__copy">
           <p className="live-opening__eyebrow"><Sparkles aria-hidden="true" /> Free community experiences</p>
-          <h1 id="live-community-title" tabIndex="-1">Take a break. <span>Find your spark.</span></h1>
+          <h1 id="live-community-title" tabIndex="-1">
+            <span className="live-opening__headline-line">Take a break.</span>
+            <span className="live-opening__headline-line live-opening__headline-line--accent">Find your spark.</span>
+          </h1>
           <p>Share something you know. Join something you’re curious about.</p>
         </div>
 
@@ -66,13 +73,15 @@ export function LiveCommunity({ onExploreDemo }) {
             </div>
           </section>
         </div>
+
+        <OfficeAd />
       </section>
 
       <section className="live-trust" aria-label="How the community will work">
-        <span><MapPin aria-hidden="true" /><strong>Singapore-first</strong> for in-person sessions</span>
-        <span><Globe2 aria-hidden="true" /><strong>Global online</strong> for remote sessions</span>
-        <span><UsersRound aria-hidden="true" /><strong>Adults 18+</strong> in pairs or small groups</span>
-        <span><CalendarCheck2 aria-hidden="true" /><strong>Free to join</strong> with credits after attendance</span>
+        <span><ThemedIcon icon={Location01Icon} /><strong>Singapore-first</strong> for in-person sessions</span>
+        <span><ThemedIcon icon={GlobalIcon} /><strong>Global online</strong> for remote sessions</span>
+        <span><ThemedIcon icon={UserMultiple02Icon} /><strong>Adults 18+</strong> in pairs or small groups</span>
+        <span><ThemedIcon icon={CalendarCheckIn01Icon} /><strong>Free to join</strong> with credits after attendance</span>
       </section>
 
       <section className="live-empty" id="live-experiences" aria-labelledby="live-experiences-title">

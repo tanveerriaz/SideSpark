@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SideSpark mobile visual comparison</title>
+    <style>
+      :root { color-scheme: dark; font-family: Arial, sans-serif; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 28px; color: #fff; background: #242433; }
+      h1 { margin: 0 0 8px; font-size: 22px; }
+      p { margin: 0 0 24px; color: #c8c8d6; }
+      main { display: flex; align-items: flex-start; justify-content: center; gap: 28px; }
+      figure { width: 320px; margin: 0; }
+      figcaption { margin-bottom: 10px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      img, iframe { display: block; width: 320px; border: 0; border-radius: 8px; background: #fff; box-shadow: 0 14px 36px rgba(0,0,0,.3); }
+      iframe { height: 720px; }
+      img { height: auto; }
+    </style>
+  </head>
+  <body>
+    <h1>SideSpark live-community mobile comparison</h1>
+    <p>Approved visual reference beside the current 320px implementation.</p>
+    <main>
+      <figure>
+        <figcaption>Approved reference</figcaption>
+        <img src="../../docs/references/sidespark-option-1.png" alt="Approved SideSpark mobile reference" />
+      </figure>
+      <figure>
+        <figcaption>Current implementation · 320 × 720</figcaption>
+        <iframe title="Current SideSpark implementation" src="http://127.0.0.1:4173/"></iframe>
+      </figure>
+    </main>
+  </body>
+</html>

@@ -27,6 +27,8 @@ describe("public experiences marketplace", () => {
   it("carries the approved human artwork through the live opening", () => {
     render(<App />);
 
+    expect(screen.getByText("Take a break.")).toHaveClass("live-opening__headline-line");
+    expect(screen.getByRole("region", { name: /see a sidespark sidequest/i })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: /two people sharing a practical skill/i })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: /two people making a new connection/i })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: /a chain of people connected by sidespark/i })).toBeInTheDocument();
@@ -54,12 +56,24 @@ describe("public experiences marketplace", () => {
     await enterDemoMode(user);
 
     expect(screen.getByRole("heading", { name: /share something you know/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /demo sessions to try/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /create demo listing/i })).toBeInTheDocument();
     expect(screen.getByRole("searchbox", { name: /search experiences/i })).toBeInTheDocument();
     expect(screen.getAllByRole("article")).toHaveLength(6);
     expect(screen.getByText((_, element) => element.tagName === "P" && element.textContent === "Showing 6 of 6 demo experiences.")).toBeInTheDocument();
     expect(screen.getByText(/18\+ community/i)).toBeInTheDocument();
     expect(screen.getByText(/attendance-confirmed credits/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /community commitments/i }).querySelectorAll('[data-icon-family="hugeicons"]'),
+    ).toHaveLength(3);
+  });
+
+  it("uses the themed icon family in the live community commitments", () => {
+    render(<App />);
+
+    expect(
+      screen.getByRole("region", { name: /how the community will work/i }).querySelectorAll('[data-icon-family="hugeicons"]'),
+    ).toHaveLength(4);
   });
 
   it("gives every demo experience a human scene", async () => {
@@ -214,7 +228,7 @@ describe("public experiences marketplace", () => {
     await user.type(screen.getByLabelText(/public neighborhood/i), "Tiong Bahru");
     await user.click(screen.getByRole("button", { name: /publish local draft/i }));
 
-    expect(screen.getByRole("heading", { name: /six fictional sessions to try/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /demo sessions to try/i })).toBeInTheDocument();
     const draft = screen.getByRole("article", { name: /sketch the city together/i });
     expect(within(draft).getByText(/your device-only draft/i)).toBeInTheDocument();
   });
@@ -231,9 +245,11 @@ describe("public experiences marketplace", () => {
     expect(screen.getByText(/^first spark$/i)).toBeInTheDocument();
     expect(screen.getByText(/^connector$/i)).toBeInTheDocument();
     expect(screen.getByText(/2 of 3 peers/i)).toBeInTheDocument();
-    expect(screen.getByRole("list", { name: /badge collection/i })).toHaveTextContent(
+    const badgeCollection = screen.getByRole("list", { name: /badge collection/i });
+    expect(badgeCollection).toHaveTextContent(
       /first spark.*connector.*skill giver.*circle builder.*reliable sidekick.*welcome spark.*island explorer.*global spark/i,
     );
+    expect(badgeCollection.querySelectorAll('[data-icon-family="hugeicons"]')).toHaveLength(8);
     expect(screen.queryByText(/leaderboard/i)).not.toBeInTheDocument();
   });
 });

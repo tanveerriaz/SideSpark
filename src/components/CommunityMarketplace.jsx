@@ -2,14 +2,17 @@ import { useMemo, useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
-  CalendarCheck2,
   Compass,
   Plus,
   Search,
-  ShieldCheck,
   Sparkles,
   UserRound,
 } from "lucide-react";
+import {
+  CalendarCheckIn01Icon,
+  HandHeartIcon,
+  UserShield01Icon,
+} from "@hugeicons/core-free-icons";
 import { motion, MotionConfig } from "motion/react";
 
 import sidesparkMark from "../assets/brand/sidespark-mark.png";
@@ -22,6 +25,7 @@ import { ExperienceDetail } from "./ExperienceDetail.jsx";
 import { HostExperienceForm } from "./HostExperienceForm.jsx";
 import { LiveCommunity } from "./LiveCommunity.jsx";
 import { ReputationProfile } from "./ReputationProfile.jsx";
+import { ThemedIcon } from "./ThemedIcon.jsx";
 
 const DEFAULT_FILTERS = { query: "", format: "all", group: "all" };
 
@@ -189,7 +193,7 @@ export function CommunityMarketplace({ onOpenClassic }) {
         >
           <p className="marketplace-kicker"><Sparkles aria-hidden="true" /> Free community experiences</p>
           <h1 id="marketplace-title" tabIndex="-1">Share something you know. <span>Join something you’re curious about.</span></h1>
-          <p>Try six fictional sessions to see how finding, booking, hosting, credits, and badges would work. Nothing is sent to a real person.</p>
+          <p>Try the fictional sessions to see how finding, booking, hosting, credits, and badges would work. Nothing is sent to a real person.</p>
           <div className="marketplace-hero__actions">
             <button className="marketplace-primary" type="button" onClick={() => document.querySelector("#discover")?.scrollIntoView()}>
               See demo experiences <Compass aria-hidden="true" />
@@ -215,16 +219,16 @@ export function CommunityMarketplace({ onOpenClassic }) {
       </section>
 
       <section className="trust-row" aria-label="Community commitments">
-        <span><ShieldCheck aria-hidden="true" /><strong>18+ community</strong> for adults</span>
-        <span><Sparkles aria-hidden="true" /><strong>Always free</strong> to host and join</span>
-        <span><CalendarCheck2 aria-hidden="true" /><strong>Attendance-confirmed credits</strong>, not popularity points</span>
+        <span><ThemedIcon icon={UserShield01Icon} /><strong>18+ community</strong> for adults</span>
+        <span><ThemedIcon icon={HandHeartIcon} /><strong>Always free</strong> to host and join</span>
+        <span><ThemedIcon icon={CalendarCheckIn01Icon} /><strong>Attendance-confirmed credits</strong>, not popularity points</span>
       </section>
 
       <section className="discovery-section" id="discover" aria-labelledby="discovery-title">
         <div className="discovery-heading">
           <div>
             <p className="marketplace-kicker">Demo experiences</p>
-            <h2 id="discovery-title">Six fictional sessions to try</h2>
+            <h2 id="discovery-title">Demo sessions to try</h2>
           </div>
           <p>Showing <strong>{visibleExperiences.length}</strong> of {allExperiences.length} demo experiences.</p>
         </div>

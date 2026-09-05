@@ -1,26 +1,28 @@
+import { ArrowLeft, CircleHelp } from "lucide-react";
 import {
-  ArrowLeft,
-  Award,
-  BadgeCheck,
-  CircleHelp,
-  Globe2,
-  HandHeart,
-  Map,
-  ShieldCheck,
-  Sparkles,
-  UsersRound,
-} from "lucide-react";
+  Award01Icon,
+  GlobalIcon,
+  HandHeartIcon,
+  MapsLocation01Icon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  UserAdd02Icon,
+  UserGroup02Icon,
+  UserMultiple02Icon,
+} from "@hugeicons/core-free-icons";
 import { motion } from "motion/react";
 
+import { ThemedIcon } from "./ThemedIcon.jsx";
+
 const BADGES = [
-  { name: "First Spark", state: "earned", detail: "Completed your first confirmed session", icon: Sparkles, tone: "sun" },
-  { name: "Connector", state: "progress", detail: "2 of 3 peers", icon: UsersRound, tone: "coral" },
-  { name: "Skill Giver", state: "locked", detail: "Host 3 completed skill-sharing sessions", icon: HandHeart, tone: "mint" },
-  { name: "Circle Builder", state: "locked", detail: "Host a completed small-group experience", icon: UsersRound, tone: "blue" },
-  { name: "Reliable Sidekick", state: "progress", detail: "4 of 5 sessions without a late cancellation", icon: ShieldCheck, tone: "violet" },
-  { name: "Welcome Spark", state: "locked", detail: "Host 3 first-time guests", icon: BadgeCheck, tone: "mint" },
-  { name: "Island Explorer", state: "progress", detail: "2 of 3 Singapore neighborhoods", icon: Map, tone: "coral" },
-  { name: "Global Spark", state: "locked", detail: "Meet online with peers in 3 countries", icon: Globe2, tone: "blue" },
+  { name: "First Spark", state: "earned", detail: "Completed your first confirmed session", icon: SparklesIcon, tone: "sun" },
+  { name: "Connector", state: "progress", detail: "2 of 3 peers", icon: UserMultiple02Icon, tone: "coral" },
+  { name: "Skill Giver", state: "locked", detail: "Host 3 completed skill-sharing sessions", icon: HandHeartIcon, tone: "mint" },
+  { name: "Circle Builder", state: "locked", detail: "Host a completed small-group experience", icon: UserGroup02Icon, tone: "blue" },
+  { name: "Reliable Sidekick", state: "progress", detail: "4 of 5 sessions without a late cancellation", icon: ShieldCheckIcon, tone: "violet" },
+  { name: "Welcome Spark", state: "locked", detail: "Host 3 first-time guests", icon: UserAdd02Icon, tone: "mint" },
+  { name: "Island Explorer", state: "progress", detail: "2 of 3 Singapore neighborhoods", icon: MapsLocation01Icon, tone: "coral" },
+  { name: "Global Spark", state: "locked", detail: "Meet online with peers in 3 countries", icon: GlobalIcon, tone: "blue" },
 ];
 
 function stateLabel(state) {
@@ -40,7 +42,7 @@ export function ReputationProfile({ onBack }) {
           <div><p className="marketplace-kicker">Fictional demo profile</p><h1 id="profile-title">Maya’s community profile</h1><p>Curious about cities, creative skills and the stories people carry.</p></div>
         </div>
         <div className="profile-credit-card">
-          <span aria-hidden="true"><Award /></span>
+          <span aria-hidden="true"><ThemedIcon icon={Award01Icon} /></span>
           <p><strong>110 reputation credits</strong><small>Non-spendable recognition for confirmed participation</small></p>
         </div>
       </section>
@@ -64,9 +66,9 @@ export function ReputationProfile({ onBack }) {
           <p><strong>Next:</strong> meet one new peer to earn Connector.</p>
         </div>
         <ul className="badge-grid" aria-label="Badge collection">
-          {BADGES.map(({ name, state, detail, icon: Icon, tone }) => (
+          {BADGES.map(({ name, state, detail, icon, tone }) => (
             <li className={`badge-card badge-card--${state} badge-card--${tone}`} key={name}>
-              <span className="badge-card__medal" aria-hidden="true"><Icon /></span>
+              <span className="badge-card__medal" aria-hidden="true"><ThemedIcon icon={icon} /></span>
               <span className="badge-card__state">{stateLabel(state)}</span>
               <h3>{name}</h3>
               <p>{detail}</p>
@@ -76,7 +78,7 @@ export function ReputationProfile({ onBack }) {
       </section>
 
       <aside className="profile-safety-note">
-        <ShieldCheck aria-hidden="true" />
+        <ThemedIcon icon={ShieldCheckIcon} />
         <p><strong>No popularity contest.</strong> SideSpark does not rank people. Badges recognise reliable, generous participation and never gate a free experience.</p>
       </aside>
     </motion.div>
