@@ -11,6 +11,15 @@ describe("public experiences marketplace", () => {
     delete window.matchMedia;
   });
 
+  it("opens on an honest live-community state", () => {
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: /no live experiences are listed yet/i })).toBeInTheDocument();
+    expect(screen.queryByRole("article")).not.toBeInTheDocument();
+    expect(screen.queryByText(/hosted by aisha/i)).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /explore demo mode/i })).toBeInTheDocument();
+  });
+
   it("opens on a product-first discovery experience", () => {
     render(<App />);
 

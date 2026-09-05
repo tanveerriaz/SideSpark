@@ -20,6 +20,7 @@ import { createBooking, createLocalExperience, filterExperiences } from "../lib/
 import { ExperienceCard } from "./ExperienceCard.jsx";
 import { ExperienceDetail } from "./ExperienceDetail.jsx";
 import { HostExperienceForm } from "./HostExperienceForm.jsx";
+import { LiveCommunity } from "./LiveCommunity.jsx";
 import { ReputationProfile } from "./ReputationProfile.jsx";
 
 const DEFAULT_FILTERS = { query: "", format: "all", group: "all" };
@@ -43,6 +44,7 @@ function FilterButton({ active, children, onClick }) {
 }
 
 export function CommunityMarketplace({ onOpenClassic }) {
+  const [communityMode, setCommunityMode] = useState("live");
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [communityState, setCommunityState] = useState(() => loadCommunityState());
   const [route, setRoute] = useState("discover");
@@ -89,6 +91,11 @@ export function CommunityMarketplace({ onOpenClassic }) {
     scrollToPageStart();
   }
 
+  function enterDemoMode() {
+    setCommunityMode("demo");
+    goDiscover();
+  }
+
   function publishExperience(draft) {
     const experience = createLocalExperience(draft);
     const saved = saveCommunityState({
@@ -125,16 +132,18 @@ export function CommunityMarketplace({ onOpenClassic }) {
           <img src={sidesparkMark} alt="SideSpark spark mark" />
           <span>SideSpark</span>
         </button>
-        <nav className="marketplace-nav" aria-label="Marketplace navigation">
+        {communityMode === "demo" ? <nav className="marketplace-nav" aria-label="Marketplace navigation">
           <button className={route === "discover" ? "marketplace-nav__active" : ""} type="button" onClick={goDiscover}>Discover</button>
           <button className={route === "host" ? "marketplace-nav__active" : ""} type="button" onClick={openHost}>Host</button>
           <button className={`demo-profile-button ${route === "profile" ? "marketplace-nav__active" : ""}`} type="button" onClick={openProfile}>
             <UserRound aria-hidden="true" /> Demo profile
           </button>
-        </nav>
+        </nav> : null}
       </header>
 
-      {route === "detail" && selectedExperience ? (
+      {communityMode === "live" ? (
+        <LiveCommunity onExploreDemo={enterDemoMode} />
+      ) : route === "detail" && selectedExperience ? (
         <ExperienceDetail
           experience={selectedExperience}
           booking={selectedBooking}
