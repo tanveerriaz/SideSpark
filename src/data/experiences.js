@@ -1,3 +1,7 @@
+import experienceCreative from "../assets/brand/experience-creative.png";
+import experienceLearning from "../assets/brand/experience-learning.png";
+import experienceSharing from "../assets/brand/experience-sharing.png";
+
 export const EXPERIENCES = [
   {
     id: "marina-bay-photo-walk",
@@ -23,6 +27,8 @@ export const EXPERIENCES = [
     palette: "coral",
     featured: true,
     demoState: "fictional",
+    illustration: experienceCreative,
+    illustrationAlt: "Two adults exploring and drawing a Singapore street illustration",
   },
   {
     id: "interview-confidence-online",
@@ -48,6 +54,8 @@ export const EXPERIENCES = [
     palette: "mint",
     featured: true,
     demoState: "fictional",
+    illustration: experienceLearning,
+    illustrationAlt: "Two adults sharing a practical idea online illustration",
   },
   {
     id: "sourdough-rescue-online",
@@ -73,6 +81,8 @@ export const EXPERIENCES = [
     palette: "sun",
     featured: false,
     demoState: "fictional",
+    illustration: experienceSharing,
+    illustrationAlt: "Three adults sharing food and stories illustration",
   },
   {
     id: "tiong-bahru-sketch",
@@ -98,6 +108,8 @@ export const EXPERIENCES = [
     palette: "violet",
     featured: false,
     demoState: "fictional",
+    illustration: experienceCreative,
+    illustrationAlt: "Two adults exploring and drawing a Singapore street illustration",
   },
   {
     id: "safe-ai-prompts",
@@ -123,6 +135,8 @@ export const EXPERIENCES = [
     palette: "blue",
     featured: false,
     demoState: "fictional",
+    illustration: experienceLearning,
+    illustrationAlt: "Two adults sharing a practical idea online illustration",
   },
   {
     id: "coffee-career-reset",
@@ -148,5 +162,7 @@ export const EXPERIENCES = [
     palette: "coral",
     featured: false,
     demoState: "fictional",
+    illustration: experienceSharing,
+    illustrationAlt: "Three adults sharing food and stories illustration",
   },
 ];

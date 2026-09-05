@@ -43,6 +43,11 @@ export function ExperienceDetail({ experience, booking, onBack, onBook, persiste
 
       <div className={`experience-detail-hero experience-detail-hero--${experience.palette ?? "mint"}`}>
         <div className="experience-detail-hero__copy">
+          {experience.illustration ? (
+            <div className="experience-detail-hero__visual">
+              <img src={experience.illustration} alt={experience.illustrationAlt} />
+            </div>
+          ) : null}
           <p className="marketplace-kicker">{experience.category} · {experience.demoState === "device-only" ? "Your device-only draft" : "Fictional example"}</p>
           <h1>{experience.title}</h1>
           <p>{experience.summary}</p>

@@ -18,6 +18,11 @@ export function ExperienceCard({ experience, onOpen }) {
 
   return (
     <article className={`experience-card experience-card--${experience.palette ?? "mint"}`} aria-labelledby={titleId}>
+      {experience.illustration ? (
+        <div className="experience-card__scene">
+          <img src={experience.illustration} alt={experience.illustrationAlt} />
+        </div>
+      ) : null}
       <div className="experience-card__topline">
         <span className="experience-card__category">{experience.category}</span>
         {experience.demoState === "device-only" ? (

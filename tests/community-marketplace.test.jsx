@@ -62,6 +62,16 @@ describe("public experiences marketplace", () => {
     expect(screen.getByText(/attendance-confirmed credits/i)).toBeInTheDocument();
   });
 
+  it("gives every demo experience a human scene", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await enterDemoMode(user);
+
+    for (const experience of screen.getAllByRole("article")) {
+      expect(within(experience).getByRole("img", { name: /illustration$/i })).toBeInTheDocument();
+    }
+  });
+
   it("filters and resets the discovery list", async () => {
     const user = userEvent.setup();
     render(<App />);
