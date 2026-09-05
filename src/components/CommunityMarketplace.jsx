@@ -30,6 +30,10 @@ function scrollToPageStart() {
   window.setTimeout(() => window.scrollTo?.({ top: 0, behavior }), 0);
 }
 
+function focusPageHeading(selector) {
+  window.setTimeout(() => document.querySelector(selector)?.focus(), 0);
+}
+
 function FilterButton({ active, children, onClick }) {
   return (
     <button
@@ -93,7 +97,18 @@ export function CommunityMarketplace({ onOpenClassic }) {
 
   function enterDemoMode() {
     setCommunityMode("demo");
-    goDiscover();
+    setRoute("discover");
+    setSelectedExperience(null);
+    scrollToPageStart();
+    focusPageHeading("#marketplace-title");
+  }
+
+  function leaveDemoMode() {
+    setCommunityMode("live");
+    setRoute("discover");
+    setSelectedExperience(null);
+    scrollToPageStart();
+    focusPageHeading("#live-community-title");
   }
 
   function publishExperience(draft) {
@@ -128,22 +143,29 @@ export function CommunityMarketplace({ onOpenClassic }) {
     <MotionConfig reducedMotion="user">
       <main className="marketplace-shell">
       <header className="marketplace-header">
-        <button className="marketplace-brand" type="button" onClick={goDiscover} aria-label="SideSpark discover home">
+        <button className="marketplace-brand" type="button" onClick={communityMode === "demo" ? goDiscover : leaveDemoMode} aria-label="SideSpark discover home">
           <img src={sidesparkMark} alt="SideSpark spark mark" />
           <span>SideSpark</span>
         </button>
-        {communityMode === "demo" ? <nav className="marketplace-nav" aria-label="Marketplace navigation">
-          <button className={route === "discover" ? "marketplace-nav__active" : ""} type="button" onClick={goDiscover}>Discover</button>
-          <button className={route === "host" ? "marketplace-nav__active" : ""} type="button" onClick={openHost}>Host</button>
+        <nav className="marketplace-nav" aria-label="Marketplace navigation">
+          <button className={communityMode === "live" ? "marketplace-nav__active" : ""} type="button" aria-pressed={communityMode === "live"} onClick={leaveDemoMode}>Live community</button>
+          {communityMode === "demo" ? <>
+          <button className={route === "discover" ? "marketplace-nav__active" : ""} type="button" onClick={goDiscover}>Demo experiences</button>
+          <button className={route === "host" ? "marketplace-nav__active" : ""} type="button" onClick={openHost}>Demo host</button>
           <button className={`demo-profile-button ${route === "profile" ? "marketplace-nav__active" : ""}`} type="button" onClick={openProfile}>
             <UserRound aria-hidden="true" /> Demo profile
           </button>
-        </nav> : null}
+          </> : <button type="button" aria-pressed="false" onClick={enterDemoMode}>Demo mode</button>}
+        </nav>
       </header>
 
       {communityMode === "live" ? (
         <LiveCommunity onExploreDemo={enterDemoMode} />
-      ) : route === "detail" && selectedExperience ? (
+      ) : <>
+      <div className="demo-mode-disclosure" role="status">
+        <strong>Demo mode.</strong> Every name, profile and experience below is fictional. Nothing here connects you to a real person.
+      </div>
+      {route === "detail" && selectedExperience ? (
         <ExperienceDetail
           experience={selectedExperience}
           booking={selectedBooking}
@@ -166,7 +188,7 @@ export function CommunityMarketplace({ onOpenClassic }) {
           transition={{ duration: 0.3 }}
         >
           <p className="marketplace-kicker"><Sparkles aria-hidden="true" /> Free community experiences</p>
-          <h1 id="marketplace-title">Share something you know. <span>Join something you’re curious about.</span></h1>
+          <h1 id="marketplace-title" tabIndex="-1">Share something you know. <span>Join something you’re curious about.</span></h1>
           <p>Meet around a useful skill, a lived experience, or simple curiosity—across Singapore in person, or anywhere online.</p>
           <div className="marketplace-hero__actions">
             <button className="marketplace-primary" type="button" onClick={() => document.querySelector("#discover")?.scrollIntoView()}>
@@ -265,6 +287,7 @@ export function CommunityMarketplace({ onOpenClassic }) {
       </section>
         </>
       )}
+      </>}
 
       <footer className="marketplace-footer">
         <p><strong>SideSpark community prototype.</strong> No real accounts, people, bookings, or notifications are connected yet.</p>

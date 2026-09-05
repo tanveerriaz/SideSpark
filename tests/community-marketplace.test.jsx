@@ -4,6 +4,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { App } from "../src/App.jsx";
 
+async function enterDemoMode(user) {
+  await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
+}
+
 describe("public experiences marketplace", () => {
   beforeEach(() => window.localStorage.clear());
   afterEach(() => {
@@ -20,8 +24,26 @@ describe("public experiences marketplace", () => {
     expect(screen.getByRole("button", { name: /explore demo mode/i })).toBeInTheDocument();
   });
 
-  it("opens on a product-first discovery experience", () => {
+  it("enters and leaves Demo mode", async () => {
+    const user = userEvent.setup();
     render(<App />);
+
+    await user.click(screen.getByRole("button", { name: /explore demo mode/i }));
+    expect(screen.getByRole("status")).toHaveTextContent(
+      /every name, profile and experience below is fictional/i,
+    );
+    expect(screen.getAllByRole("article")).toHaveLength(6);
+    expect(screen.getByRole("button", { name: /demo experiences/i })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: /live community/i }));
+    expect(screen.getByRole("heading", { name: /no live experiences are listed yet/i })).toBeInTheDocument();
+    expect(screen.queryByRole("article")).not.toBeInTheDocument();
+  });
+
+  it("opens Demo mode on a product-first discovery experience", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await enterDemoMode(user);
 
     expect(screen.getByRole("heading", { name: /share something you know/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /host a spark/i })).toBeInTheDocument();
@@ -35,6 +57,7 @@ describe("public experiences marketplace", () => {
   it("filters and resets the discovery list", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     await user.type(screen.getByRole("searchbox", { name: /search experiences/i }), "photography");
     expect(screen.getAllByRole("article")).toHaveLength(1);
@@ -57,6 +80,7 @@ describe("public experiences marketplace", () => {
   it("keeps the classic guided journey available", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     await user.click(screen.getByRole("button", { name: /classic guided demo/i }));
     expect(screen.getByRole("heading", { name: /take a break\. find your spark/i })).toBeInTheDocument();
@@ -71,6 +95,7 @@ describe("public experiences marketplace", () => {
     const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     await user.click(screen.getByRole("button", { name: /demo profile/i }));
 
@@ -80,6 +105,7 @@ describe("public experiences marketplace", () => {
   it("reserves an instant experience without awarding credits", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     const experience = screen.getByRole("article", { name: /phone photography walk/i });
     await user.click(within(experience).getByRole("button", { name: /view experience/i }));
@@ -94,6 +120,7 @@ describe("public experiences marketplace", () => {
   it("sends a host-approval request", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     const experience = screen.getByRole("article", { name: /speak confidently/i });
     await user.click(within(experience).getByRole("button", { name: /view experience/i }));
@@ -112,6 +139,7 @@ describe("public experiences marketplace", () => {
     });
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     await user.click(screen.getByRole("button", { name: /host a spark/i }));
     expect(screen.getByRole("heading", { name: /host a free experience/i })).toBeInTheDocument();
@@ -131,6 +159,7 @@ describe("public experiences marketplace", () => {
   it("adapts host fields for online and one-to-one experiences", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     await user.click(screen.getByRole("button", { name: /host a spark/i }));
     expect(screen.getByLabelText(/public neighborhood/i)).toBeInTheDocument();
@@ -144,6 +173,7 @@ describe("public experiences marketplace", () => {
   it("publishes a valid device-only experience to discovery", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     await user.click(screen.getByRole("button", { name: /host a spark/i }));
     await user.type(screen.getByLabelText(/^title$/i), "Sketch the city together");
@@ -162,6 +192,7 @@ describe("public experiences marketplace", () => {
   it("explains non-spendable credits and all badge milestones", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterDemoMode(user);
 
     await user.click(screen.getByRole("button", { name: /demo profile/i }));
     expect(screen.getByRole("heading", { name: /maya’s community profile/i })).toBeInTheDocument();
