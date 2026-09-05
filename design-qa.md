@@ -206,3 +206,35 @@ No actionable P0, P1, or P2 difference remains.
 - The protected GPTSites hosting, worker, packaging script, and worker test files remain unchanged.
 
 final result: passed
+
+---
+
+# SideSpark policy pages and universal footer QA
+
+## Scope
+
+- Direct routes: `/privacy` and `/terms`
+- Shared footer destinations: Privacy, Terms, `mailto:tanveer.riaz@hotmail.com`, the verified SideSpark making-of article, and the 60-second pitch
+- Browser: the user's existing Chrome session at its 1470 × 779 CSS-pixel content viewport
+- Automated journey set: Live, Demo, discovery filters, instant reservation, host-approval request, host validation and publish, reputation profile, Skill Swap, Social Connect, AI-prompting challenge, no-match recovery, video, presentation, Privacy and Terms
+
+## Findings
+
+No actionable P0, P1, or P2 issue remains in the inspected desktop states.
+
+- Privacy accurately describes the current prototype, fictional data, browser-local storage, no SideSpark application backend, possible hosting-provider technical processing, sensitive-data boundary, and the work required before a real service launches.
+- Terms state the 18+ rule, fictional-demo status, non-monetary credits, prohibited conduct, personal-safety responsibility, advice limits, availability limits, intellectual property, external-link boundary and Singapore governing law.
+- The contact card exposes the requested email as a real `mailto:` link. Policy pages cross-link and provide two clear routes home.
+- The shared dark footer fits the existing SideSpark visual system and appears on Live, Demo and classic guided states. Its five links use normal anchors, visible focus treatment and 48-pixel minimum targets.
+- The making-of destination was fetched successfully and resolves to `https://tanveerriaz.me/blog/sidespark-started-with-a-conversation`.
+- Existing 320px product rules remain in place. The new legal layout collapses its contact card and policy navigation to one column below 640px, while the footer becomes a two-column link grid.
+- The focused end-to-end interaction run passed 35 tests across six journey files.
+
+## Browser evidence
+
+- Privacy top: SideSpark header, direct prototype statement, update date and first policy sections were visible with a readable line length.
+- Privacy bottom: the mint contact card, email target, Terms cross-link and return link were visible without collision.
+- Terms top: eligibility, prototype status and demo limitations were visible in the first viewport.
+- Live footer: all five destinations were exposed in the accessibility tree and visibly aligned beneath the honest empty-state panel.
+
+final result: passed
