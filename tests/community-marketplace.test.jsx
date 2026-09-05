@@ -24,6 +24,14 @@ describe("public experiences marketplace", () => {
     expect(screen.getByRole("button", { name: /explore demo mode/i })).toBeInTheDocument();
   });
 
+  it("carries the approved human artwork through the live opening", () => {
+    render(<App />);
+
+    expect(screen.getByRole("img", { name: /two people sharing a practical skill/i })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /two people making a new connection/i })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /a chain of people connected by sidespark/i })).toBeInTheDocument();
+  });
+
   it("enters and leaves Demo mode", async () => {
     const user = userEvent.setup();
     render(<App />);
