@@ -10,14 +10,23 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## SideSpark product contract
 
-- The product name is **SideSpark**. It helps non-technical office workers meet coworkers, exchange practical skills, and grow their networks through short shared sidequests.
+- The product name is **SideSpark**. It helps people meet, exchange practical skills, share free experiences, and grow their communities through short shared sidequests.
+- The next product direction is a public community platform for anyone who wants to share or join a free experience; a separate workplace version may follow later.
+- The public platform must remain hosted on GPTSites and evolve the existing SideSpark Sites project rather than move to an external host.
+- Community experiences may be online, in person, or flexible.
+- Launch Singapore-first for in-person discovery while allowing global online participation, and limit accounts to adults aged 18 or older.
+- Support both one-to-one and small-group experiences. Hosts choose whether an experience uses approval requests or instant reservations.
+- Experiences remain free to join. Non-spendable reputation credits and earned badges reward arranging sessions, pairing up, participating reliably, and helping the community grow; they must not gate participation.
 - Connection comes first. AI prompting is one optional skill topic, never the product's main category or a load-bearing dependency.
 - When `AI prompting` is offered or requested in Skill Swap, use a hands-on, break-specific AI learning challenge with a clear outcome and safe-data reminder. Keep Social Connect and non-AI Skill Swap quests intact.
 - The two entry intentions are **Skill Swap** and **Social Connect**. Break formats are Coffee, Walk, Lunch, and a 15-minute Desk Break.
 - Use `docs/references/sidespark-option-1.png` as the visual source of truth: deep electric indigo, coral and mint choice cards, yellow primary actions, bold rounded typography, tactile controls, and playful spark accents.
 - After either intention is selected, reveal the vertical journey behavior shown in `docs/references/sidespark-option-2-journey.png`.
 - This is a responsive public website, not a simulated phone app. The selected mobile visual governs the mobile state; layouts must also adapt cleanly through tablet and desktop widths.
-- The MVP uses deterministic matching against explicitly consented synthetic demo profiles. Label demo data honestly and never imply live employees, private directory access, or an AI call that did not happen.
+- The current prototype uses deterministic matching against explicitly consented synthetic demo profiles. Label demo data honestly and never imply live people, private directory access, or an AI call that did not happen; the planned multi-user platform will replace fixtures with authenticated, user-created profiles and experiences.
+- The public marketplace must default to an honest live-community state with no fictional people presented as available. Put every synthetic profile, name, experience, booking and reputation record behind an explicit Demo mode.
+- Carry the approved human illustration language through the public marketplace: expressive faces, people sharing and learning, the community chain, playful marks and tactile image-led panels. Do not reduce the product identity to generic utility icons.
+- Avoid generic AI-product copy and interchangeable card grids. Use short, concrete language about what a person can share, join or do next.
 - Fictional demo profiles are acceptable, but both Skill Swap and Social Connect must provide a complete end-to-end journey rather than stopping at the intention-selection screen.
 - Store only device-local progress. Do not collect email addresses, employee IDs, photos, sensitive HR data, or transmit profile data.
 - Preserve keyboard access, 48px touch targets, visible focus, reduced-motion behavior, honest no-match handling, and a complete 320px-wide experience.
