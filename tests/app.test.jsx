@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
@@ -23,6 +23,13 @@ describe("SideSpark classic guided demo", () => {
     expect(screen.getByRole("button", { name: /find my sidekick/i })).toBeDisabled();
     const pitchLink = screen.getByRole("link", { name: /watch 60-sec pitch/i });
     expect(pitchLink).toHaveAttribute("href", "/presentation.html");
+    const footer = screen.getByRole("contentinfo");
+    expect(within(footer).getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
+    expect(within(footer).getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms");
+    expect(within(footer).getByRole("link", { name: /contact us/i })).toHaveAttribute(
+      "href",
+      "mailto:tanveer.riaz@hotmail.com",
+    );
   });
 
   it("lets a person select why they want to connect", async () => {
